@@ -118,18 +118,18 @@ export class Home {
   	installCode = `npm install @craftedcode-dev/ngx-analog-clock`;
 
 usageCode = `import { Component } from '@angular/core';
-import { AnalogClockComponent } from 'ngx-analog-clock';
+import { AnalogClockComponent } from '@craftedcode-dev/ngx-analog-clock';
 
 @Component({
-selector: 'app-root',
-standalone: true,
-imports: [AnalogClockComponent],
-template: \`
+  selector: 'app-root',
+  standalone: true,
+  imports: [AnalogClockComponent],
+  template: \`
     <ngx-analog-clock [config]="{
-        theme: 'dark',
-        size: 200
+      theme: 'dark',
+      size: 200
     }" />
- \`
+  \`
 })
 export class AppComponent {}`;
 
