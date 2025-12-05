@@ -1,7 +1,15 @@
 <nav class="main-nav">
 	<div class="nav-container">
+
 		<a routerLink="/" class="logo">ngx-analog-clock</a>
-		<div class="nav-links">
+
+		<button class="hamburger" (click)="isMenuOpen = !isMenuOpen">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+
+		<div class="nav-links" [class.open]="isMenuOpen">
 			<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
 			<a routerLink="/docs" routerLinkActive="active">Docs</a>
 			<a routerLink="/showcases" routerLinkActive="active">Showcases</a>
@@ -14,4 +22,5 @@
 		</div>
 	</div>
 </nav>
+
 <router-outlet></router-outlet>

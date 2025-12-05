@@ -529,3 +529,24 @@
 		}
 	}
 }
+
+.builder-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0;
+	flex: 1;
+	overflow: hidden;
+
+	@media (max-width: 1024px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto;
+
+		.preview-container {
+			padding: 10px 10px 0px;
+
+			ngx-analog-clock {
+				filter: none;
+			}
+		}
+	}
+}
