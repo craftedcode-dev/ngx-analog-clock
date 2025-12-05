@@ -1,0 +1,253 @@
+<div class="demo">
+	<section class="block">
+		<h2>Themes</h2>
+		<p class="section-description">
+			Three base themes to start with. Light for bright interfaces, Dark for modern apps, and Custom for full creative control.
+		</p>
+		<div class="grid">
+			<div class="item">
+				<h3>Light</h3>
+				<ngx-analog-clock [config]="{ theme: 'light' }"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig({ theme: 'light' }, 'Light Theme')">
+						View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Dark</h3>
+				<ngx-analog-clock [config]="{ theme: 'dark' }"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig({ theme: 'dark' }, 'Dark Theme')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Custom</h3>
+				<ngx-analog-clock [config]="customThemeConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(customThemeConfig, 'Custom Theme')">
+					View Config
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<section class="block">
+		<h2>Classic</h2>
+		<p class="section-description">
+			Timeless designs inspired by traditional analog clocks. Perfect for elegant and professional applications.
+		</p>
+		<div class="grid">
+			<div class="item">
+				<h3>Black & White</h3>
+				<ngx-analog-clock [config]="classicBlackWhiteConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(classicBlackWhiteConfig, 'Classic Black & White')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Silver</h3>
+				<ngx-analog-clock [config]="classicSilverConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(classicSilverConfig, 'Classic Silver')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Green</h3>
+				<ngx-analog-clock [config]="classicGreenConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(classicGreenConfig, 'Classic Green')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Emerald</h3>
+				<ngx-analog-clock [config]="classicEmeraldConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(classicEmeraldConfig, 'Classic Emerald')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Pink</h3>
+				<ngx-analog-clock [config]="classicPinkConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(classicPinkConfig, 'Classic Pink')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Blue</h3>
+				<ngx-analog-clock [config]="classicBlueConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(classicBlueConfig, 'Classic Blue')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Retro</h3>
+				<ngx-analog-clock [config]="classicOrangeConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(classicOrangeConfig, 'Classic Retro Orange')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Brown</h3>
+				<ngx-analog-clock [config]="classicBrownConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(classicBrownConfig, 'Classic Brown')">
+					View Config
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<section class="block">
+		<h2>Modern</h2>
+		<p class="section-description">
+			Contemporary designs with bold colors and gradients. Ideal for creative projects and modern web applications.
+		</p>
+		<div class="grid">
+			<div class="item">
+				<h3>Dark Brutalist</h3>
+				<ngx-analog-clock [config]="modernDarkBrutalistConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(modernDarkBrutalistConfig, 'Modern Dark Brutalist')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Cyber Yellow</h3>
+				<ngx-analog-clock [config]="modernCyberYellowConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(modernCyberYellowConfig, 'Modern Cyber Yellow')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Cyber Matrix</h3>
+				<ngx-analog-clock [config]="modernMatrixConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(modernMatrixConfig, 'Modern Cyber Matrix')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Vaporwave</h3>
+				<ngx-analog-clock [config]="modernVaporwaveConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(modernVaporwaveConfig, 'Modern Vaporwave')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Steel Blue</h3>
+				<ngx-analog-clock [config]="modernSteelBlueConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(modernSteelBlueConfig, 'Modern Steel Blue')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Midnight Blue</h3>
+				<ngx-analog-clock [config]="modernMidnightBlueConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(modernMidnightBlueConfig, 'Modern Midnight Blue')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Teal</h3>
+				<ngx-analog-clock [config]="modernTealConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(modernTealConfig, 'Modern Teal')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Sunset Orange</h3>
+				<ngx-analog-clock [config]="modernSunsetOrangeConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(modernSunsetOrangeConfig, 'Modern Sunset Orange')">
+					View Config
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<section class="block">
+		<h2>Timezones</h2>
+		<p class="section-description">
+			Display time from any timezone using IANA timezone strings. Perfect for world clocks and international applications. Each clock automatically updates to show the current time in its respective timezone.
+		</p>
+		<div class="grid">
+			<div class="item">
+				<h3>New York</h3>
+				<ngx-analog-clock [config]="timezoneNewYorkConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(timezoneNewYorkConfig, 'New York Timezone')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Sydney</h3>
+				<ngx-analog-clock [config]="timezoneSydneyConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(timezoneSydneyConfig, 'Sydney Timezone')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Paris</h3>
+				<ngx-analog-clock [config]="timezoneParisConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(timezoneParisConfig, 'Paris Timezone')">
+					View Config
+				</button>
+			</div>
+
+			<div class="item">
+				<h3>Cairo</h3>
+				<ngx-analog-clock [config]="timezoneCairoConfig"></ngx-analog-clock>
+				<button class="view-config-btn" (click)="viewConfig(timezoneCairoConfig, 'Cairo Timezone')">
+					View Config
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<section class="block">
+		<h2>Custom Time Control</h2>
+		<p class="section-description">
+			Take full control of the time displayed on the clock. Perfect for countdowns, timers, or displaying specific moments. Use the <code>[time]</code> input to set any custom time programmatically.
+		</p>
+		<div class="grid">
+			<div class="item">
+			<h3>Stopwatch</h3>
+			<ngx-analog-clock 
+				[time]="customTime"
+				[config]="customTimeControlConfig">
+			</ngx-analog-clock>
+			<button class="view-config-btn" (click)="viewConfig(customTimeControlConfig, 'Custom Time Stopwatch')">
+				View Config
+			</button>
+			</div>
+		</div>
+	</section>
+</div>
+
+<div class="modal-overlay" *ngIf="showConfigModal" (click)="closeModal()">
+	<div class="modal-content" (click)="$event.stopPropagation()">
+		<div class="modal-header">
+			<h2>{{ selectedClockName }}</h2>
+			<div class="modal-actions">
+			<button (click)="copyConfig()" class="btn-copy">
+				{{ copied ? '✓ Copied!' : '📋 Copy Config' }}
+			</button>
+			<button (click)="closeModal()" class="btn-close">×</button>
+			</div>
+		</div>
+		<div class="modal-body">
+			<pre><code>config: AnalogClockConfig = {{ formattedConfig }};</code></pre>
+		</div>
+	</div>
+</div>

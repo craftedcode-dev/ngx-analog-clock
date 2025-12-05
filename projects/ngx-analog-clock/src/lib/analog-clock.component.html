@@ -1,0 +1,215 @@
+<div 
+	class="clock-container" 
+	[class]="customClass"
+	[style.width.px]="size" 
+	[style.height.px]="size"
+	role="img"
+	[attr.aria-label]="getAriaLabel()">
+	<svg 
+	[attr.width]="size" 
+	[attr.height]="size" 
+	[attr.viewBox]="'0 0 ' + size + ' ' + size"
+	[class]="customClass"
+	[class.light-theme]="theme === 'light'"
+	[class.dark-theme]="theme === 'dark'"
+	[class.custom-theme]="theme === 'custom'"
+	[class.small-size]="isSmall()"
+	[class.medium-size]="isMedium()"
+	[ngStyle]="customStyles()"
+	aria-hidden="true"
+	class="analog-clock">
+
+	<defs>
+		@if (hasBackgroundGradient()) {
+			@if (isLinearGradient()) {
+				<linearGradient 
+					[attr.id]="gradientId"
+					[attr.x1]="getGradientCoordinates().x1"
+					[attr.y1]="getGradientCoordinates().y1"
+					[attr.x2]="getGradientCoordinates().x2"
+					[attr.y2]="getGradientCoordinates().y2">
+					<stop offset="0%" [attr.stop-color]="getGradientStartColor()" />
+					<stop offset="100%" [attr.stop-color]="getGradientEndColor()" />
+				</linearGradient>
+			} @else {
+				<radialGradient 
+					[attr.id]="gradientId"
+					[attr.cx]="getRadialGradientCoordinates().cx"
+					[attr.cy]="getRadialGradientCoordinates().cy"
+					[attr.r]="getRadialGradientCoordinates().r">
+					<stop offset="0%" [attr.stop-color]="getGradientStartColor()" />
+					<stop offset="100%" [attr.stop-color]="getGradientEndColor()" />
+				</radialGradient>
+			}
+		}
+	</defs>
+
+	@if (effectiveShowBorder()) {
+		<circle 
+			[attr.cx]="center()" 
+			[attr.cy]="center()" 
+			[attr.r]="radius() + 5" 
+			[attr.stroke-width]="borderWidth()"
+			class="glow-ring" />
+	}
+
+	<circle 
+		[attr.cx]="center()" 
+		[attr.cy]="center()" 
+		[attr.r]="radius()"
+		[attr.fill]="getCircleFill()"
+		class="clock-face" />
+
+	@if (effectiveShowInnerRing()) {
+		<circle 
+			[attr.cx]="center()" 
+			[attr.cy]="center()" 
+			[attr.r]="radius() - 15" 
+			class="inner-ring" />
+	}
+
+	@if (effectiveMarkers() !== 'none' && (effectiveMarkers() === 'lines' || effectiveMarkers() === 'both')) {
+		@for (hour of displayHourMarkers(); track hour) {
+		<line
+			[attr.x1]="getMarkerX1(hour, true)"
+			[attr.y1]="getMarkerY1(hour, true)"
+			[attr.x2]="getMarkerX2(hour, true)"
+			[attr.y2]="getMarkerY2(hour, true)"
+			[attr.stroke-width]="hourMarkerWidth()"
+			class="hour-marker" />
+		}
+	}
+
+	@if (effectiveMarkers() === 'lines' || effectiveMarkers() === 'both') {
+		@for (hour of cardinalMarkers(); track hour) {
+			<line
+				[attr.x1]="getMarkerX1(hour, true)"
+				[attr.y1]="getMarkerY1(hour, true)"
+				[attr.x2]="getMarkerX2(hour, true)"
+				[attr.y2]="getMarkerY2(hour, true)"
+				[attr.stroke-width]="hourMarkerWidth()"
+				class="hour-marker cardinal-marker" />
+		}
+	}
+
+	@if (effectiveMarkers() !== 'none' && (effectiveMarkers() === 'lines' || effectiveMarkers() === 'both') && !isSmall()) {
+		@for (minute of minutes(); track minute) {
+			<line
+				[attr.x1]="getMarkerX1(minute, false)"
+				[attr.y1]="getMarkerY1(minute, false)"
+				[attr.x2]="getMarkerX2(minute, false)"
+				[attr.y2]="getMarkerY2(minute, false)"
+				[attr.stroke-width]="minuteMarkerWidth()"
+				class="minute-marker" />
+		}
+	}
+
+	@if (effectiveMarkers() === 'numbers') {
+		@for (hour of displayNumbers(); track hour) {
+			<text
+				[attr.x]="getNumberX(hour === 0 ? 12 : hour)"
+				[attr.y]="getNumberY(hour === 0 ? 12 : hour)"
+				[attr.font-size]="numberFontSize()"
+				[style.font-weight]="numberFontWeight()"
+				class="hour-number"
+				text-anchor="middle"
+				dominant-baseline="middle">
+				{{ getNumberDisplay(hour) }}
+			</text>
+		}
+	}
+
+	@if (effectiveMarkers() === 'both') {
+		@for (hour of cardinalMarkers(); track hour) {
+			<text
+				[attr.x]="getNumberX(hour === 0 ? 12 : hour)"
+				[attr.y]="getNumberY(hour === 0 ? 12 : hour)"
+				[attr.font-size]="numberFontSize()"
+				[style.font-weight]="numberFontWeight()"
+				class="hour-number cardinal-number"
+				text-anchor="middle"
+				dominant-baseline="middle">
+				{{ getNumberDisplay(hour) }}
+			</text>
+		}
+	}
+
+	@if (effectiveLabelText()) {
+		<text
+			[attr.x]="center()"
+			[attr.y]="labelY()"
+			[attr.font-size]="labelFontSize()"
+			class="clock-label"
+			text-anchor="middle"
+			dominant-baseline="middle">
+			{{ effectiveLabelText() }}
+		</text>
+	}
+
+	@if (effectiveShowHour()) {
+		<line
+			[attr.x1]="center()"
+			[attr.y1]="center()"
+			[attr.x2]="hourHandX()"
+			[attr.y2]="hourHandY()"
+			[attr.stroke-width]="hourHandWidth()"
+			[class.smooth]="effectiveSmoothHands()"
+			class="hour-hand" />
+	}
+
+	@if (effectiveShowMinute()) {
+		<line
+			[attr.x1]="center()"
+			[attr.y1]="center()"
+			[attr.x2]="minuteHandX()"
+			[attr.y2]="minuteHandY()"
+			[attr.stroke-width]="minuteHandWidth()"
+			[class.smooth]="effectiveSmoothHands()"
+			class="minute-hand" />
+	}
+
+	@if (effectiveShowSecond()) {
+		<line
+			[attr.x1]="center()"
+			[attr.y1]="center()"
+			[attr.x2]="secondHandX()"
+			[attr.y2]="secondHandY()"
+			[attr.stroke-width]="secondHandWidth()"
+			[class.smooth]="effectiveSmoothHands()"
+			class="second-hand" />
+		
+		@if (!isSmall()) {
+		<line
+			[attr.x1]="center()"
+			[attr.y1]="center()"
+			[attr.x2]="secondHandTailX()"
+			[attr.y2]="secondHandTailY()"
+			[attr.stroke-width]="secondHandWidth()"
+			[class.smooth]="effectiveSmoothHands()"
+			class="second-hand-tail" />
+		}
+	}
+
+	@if (effectiveShowCenterRing()) {
+		<circle 
+			[attr.cx]="center()" 
+			[attr.cy]="center()" 
+			[attr.r]="centerDotRadius()" 
+			class="center-dot-outer" />
+	}
+	<circle 
+		[attr.cx]="center()" 
+		[attr.cy]="center()" 
+		[attr.r]="centerDotInnerRadius()" 
+		class="center-dot" />
+	</svg>
+
+	@if (digitalDisplay?.enabled) {
+		<div class="digital-display" [style.color]="digitalDisplay?.color">
+			<div class="digital-time">{{ digitalTime() }}</div>
+			@if (digitalDisplay?.showDate) {
+				<div class="digital-date">{{ digitalDate() }}</div>
+			}
+		</div>
+	}
+</div>

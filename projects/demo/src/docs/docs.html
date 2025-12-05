@@ -1,0 +1,492 @@
+<div class="docs-container">
+  <aside class="sidebar">
+    <nav>
+      <div class="nav-section">
+        <h3>Getting Started</h3>
+        <a (click)="scrollToSection('installation')" [class.active]="activeSection === 'installation'">Installation</a>
+        <a (click)="scrollToSection('quick-start')" [class.active]="activeSection === 'quick-start'">Quick Start</a>
+        <a (click)="scrollToSection('basic-usage')" [class.active]="activeSection === 'basic-usage'">Basic Usage</a>
+      </div>
+
+      <div class="nav-section">
+        <h3>API Reference</h3>
+        <a (click)="scrollToSection('api-overview')" [class.active]="activeSection === 'api-overview'">Overview</a>
+        <a (click)="scrollToSection('api-basic')" [class.active]="activeSection === 'api-basic'">Basic Properties</a>
+        <a (click)="scrollToSection('api-hands')" [class.active]="activeSection === 'api-hands'">Hands</a>
+        <a (click)="scrollToSection('api-display')" [class.active]="activeSection === 'api-display'">Display</a>
+        <a (click)="scrollToSection('api-colors')" [class.active]="activeSection === 'api-colors'">Custom Colors</a>
+        <a (click)="scrollToSection('api-digital')" [class.active]="activeSection === 'api-digital'">Digital Display</a>
+        <a (click)="scrollToSection('api-label')" [class.active]="activeSection === 'api-label'">Label</a>
+      </div>
+
+      <div class="nav-section">
+        <h3>Features</h3>
+        <a (click)="scrollToSection('feature-themes')" [class.active]="activeSection === 'feature-themes'">Themes</a>
+        <a (click)="scrollToSection('feature-timezone')" [class.active]="activeSection === 'feature-timezone'">Timezones</a>
+        <a (click)="scrollToSection('feature-custom-time')" [class.active]="activeSection === 'feature-custom-time'">Custom Time</a>
+        <a (click)="scrollToSection('feature-colors')" [class.active]="activeSection === 'feature-colors'">Custom Colors</a>
+        <a (click)="scrollToSection('feature-gradients')" [class.active]="activeSection === 'feature-gradients'">Gradients</a>
+      </div>
+
+      <div class="nav-section">
+        <h3>Advanced</h3>
+        <a (click)="scrollToSection('typescript')" [class.active]="activeSection === 'typescript'">TypeScript</a>
+        <a (click)="scrollToSection('performance')" [class.active]="activeSection === 'performance'">Performance</a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Getting Started -->
+    <section id="installation" class="content-section">
+      <h1>Getting Started</h1>
+      
+      <h2>Installation</h2>
+      <p>Install ngx-analog-clock using npm:</p>
+      <div class="code-block">
+        <pre><code>npm install @craftedcode-dev/ngx-analog-clock</code></pre>
+      </div>
+    </section>
+
+    <section id="quick-start" class="content-section">
+      <h2>Quick Start</h2>
+      <p>Import the component in your standalone component or module:</p>
+      <div class="code-block">
+        <pre><code>import {{ '{' }} NgxAnalogClockComponent {{ '}' }} from 'ngx-analog-clock';
+
+@Component({{'{' }}
+  selector: 'app-root',
+  standalone: true,
+  imports: [NgxAnalogClockComponent],
+  template: '&lt;ngx-analog-clock&gt;&lt;/ngx-analog-clock&gt;'
+{{ '}' }})
+export class AppComponent {{ '{' }}{{ '}' }}</code></pre>
+      </div>
+      <p>That's it! You now have a working analog clock.</p>
+      <div class="live-example">
+        <ngx-analog-clock [config]="basicConfig"></ngx-analog-clock>
+      </div>
+    </section>
+
+    <section id="basic-usage" class="content-section">
+      <h2>Basic Usage</h2>
+      <p>Customize your clock using the <code>[config]</code> input:</p>
+      <div class="code-block">
+        <pre><code>&lt;ngx-analog-clock [config]="clockConfig"&gt;&lt;/ngx-analog-clock&gt;
+
+export class MyComponent {{'{' }}
+  clockConfig: AnalogClockConfig = {{'{' }}
+    size: 300,
+    theme: 'dark'
+  {{ '}' }};
+{{ '}' }}</code></pre>
+      </div>
+    </section>
+
+    <!-- API Reference -->
+    <section id="api-overview" class="content-section">
+      <h1>API Reference</h1>
+      <p class="api-intro">
+        Complete reference of all configuration properties. All properties are optional and have sensible defaults.
+        The configuration object follows a nested structure for better organization.
+      </p>
+    </section>
+
+    <!-- API Tables -->
+    <section id="api-basic" class="content-section">
+      <h2>Basic Properties</h2>
+      <div class="api-table-wrapper">
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prop of apiSections[0].properties">
+              <td><code>{{ prop.name }}</code></td>
+              <td><code class="type">{{ prop.type }}</code></td>
+              <td><code class="default">{{ prop.default }}</code></td>
+              <td>{{ prop.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="api-hands" class="content-section">
+      <h2>Hands Configuration</h2>
+      <p>Configure the appearance and behavior of clock hands. All hands support length, width, and visibility controls.</p>
+      <div class="api-table-wrapper">
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prop of apiSections[1].properties">
+              <td><code>{{ prop.name }}</code></td>
+              <td><code class="type">{{ prop.type }}</code></td>
+              <td><code class="default">{{ prop.default }}</code></td>
+              <td>{{ prop.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="api-display" class="content-section">
+      <h2>Display Configuration</h2>
+      <p>Control markers, numbers, borders, and other visual elements of the clock face.</p>
+      <div class="api-table-wrapper">
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prop of apiSections[2].properties">
+              <td><code>{{ prop.name }}</code></td>
+              <td><code class="type">{{ prop.type }}</code></td>
+              <td><code class="default">{{ prop.default }}</code></td>
+              <td>{{ prop.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="api-colors" class="content-section">
+      <h2>Custom Colors</h2>
+      <p>Complete color customization when <code>theme</code> is set to <code>"custom"</code>. Supports hex, rgb, rgba, and named colors. Also supports linear and radial gradients for backgrounds.</p>
+      <div class="api-table-wrapper">
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prop of apiSections[3].properties">
+              <td><code>{{ prop.name }}</code></td>
+              <td><code class="type">{{ prop.type }}</code></td>
+              <td><code class="default">{{ prop.default }}</code></td>
+              <td>{{ prop.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="api-digital" class="content-section">
+      <h2>Digital Display</h2>
+      <p>Optional digital time display that can be shown above or below the clock.</p>
+      <div class="api-table-wrapper">
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prop of apiSections[4].properties">
+              <td><code>{{ prop.name }}</code></td>
+              <td><code class="type">{{ prop.type }}</code></td>
+              <td><code class="default">{{ prop.default }}</code></td>
+              <td>{{ prop.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="live-example">
+        <ngx-analog-clock [config]="digitalDisplayExample"></ngx-analog-clock>
+      </div>
+    </section>
+
+    <section id="api-label" class="content-section">
+      <h2>Label</h2>
+      <p>Add text labels to your clock, perfect for timezone names or custom branding.</p>
+      <div class="api-table-wrapper">
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prop of apiSections[5].properties">
+              <td><code>{{ prop.name }}</code></td>
+              <td><code class="type">{{ prop.type }}</code></td>
+              <td><code class="default">{{ prop.default }}</code></td>
+              <td>{{ prop.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="feature-themes" class="content-section">
+      <h1>Features</h1>
+      
+      <h2>Themes</h2>
+      <p>Three built-in themes for quick setup. Use <code>"custom"</code> theme for complete color control.</p>
+      <div class="code-block">
+        <pre><code>// Light theme
+{{ '{' }} theme: 'light' {{ '}' }}
+
+// Dark theme
+{{ '{' }} theme: 'dark' {{ '}' }}
+
+// Custom theme (use with customColors)
+{{ '{' }} theme: 'custom' {{ '}' }}</code></pre>
+      </div>
+      <div class="live-example">
+        <ngx-analog-clock [config]="themeExample"></ngx-analog-clock>
+      </div>
+    </section>
+
+    <section id="feature-timezone" class="content-section">
+      <h2>Timezone Support</h2>
+      <p>Display time from any timezone using IANA timezone strings. Perfect for world clocks and international applications.</p>
+      <div class="code-block">
+        <pre><code>clockConfig: AnalogClockConfig = {{'{' }}
+  size: 250,
+  timezone: 'America/New_York',
+  label: {{'{' }}
+    text: 'New York',
+    position: 'bottom'
+  {{ '}' }}
+{{ '}' }};</code></pre>
+      </div>
+      <div class="live-example">
+        <ngx-analog-clock [config]="timezoneExample"></ngx-analog-clock>
+      </div>
+      <div class="info-box">
+        <strong>Supported Timezones:</strong> All IANA timezone strings are supported (e.g., "Europe/Paris", "Asia/Tokyo", "Australia/Sydney").
+        Use "local" for the user's system timezone.
+      </div>
+    </section>
+
+    <section id="feature-custom-time" class="content-section">
+      <h2>Custom Time Control</h2>
+      <p>Control exactly what time the clock displays using the <code>time</code> property in config. Perfect for timers, countdowns, or displaying specific moments.</p>
+      <div class="code-block">
+        <pre><code>export class TimerComponent implements OnInit {{'{' }}
+  customTime: Date = new Date();
+
+  get clockConfig(): AnalogClockConfig {{'{' }}
+    return {{'{' }}
+      time: this.customTime,
+      size: 300,
+      theme: 'light'
+    {{ '}' }};
+  {{ '}' }}
+
+  ngOnInit() {{'{' }}
+    // Update every second
+    setInterval(() => {{'{' }}
+      this.customTime = new Date(this.customTime.getTime() + 1000);
+    {{ '}' }}, 1000);
+  {{ '}' }}
+{{ '}' }}
+
+&lt;ngx-analog-clock [config]="clockConfig"&gt;&lt;/ngx-analog-clock&gt;</code></pre>
+      </div>
+      <div class="info-box">
+        <strong>Note:</strong> When <code>time</code> property is set in config, the clock displays that time instead of the current time. 
+        Update the Date object to animate the clock.
+      </div>
+    </section>
+
+    <section id="feature-colors" class="content-section">
+      <h2>Custom Colors</h2>
+      <p>Full color customization when using <code>theme: 'custom'</code>. Control every color element of the clock.</p>
+      <div class="code-block">
+        <pre><code>clockConfig: AnalogClockConfig = {{'{' }}
+  theme: 'custom',
+  customColors: {{'{' }}
+    hands: {{'{' }}
+      hour: '#3b82f6',
+      minute: '#60a5fa',
+      second: '#93c5fd'
+    {{ '}' }},
+    markers: {{'{' }}
+      hour: '#1e40af',
+      minute: '#3b82f6'
+    {{ '}' }},
+    center: {{'{' }}
+      dot: '#1e40af',
+      ring: '#3b82f6'
+    {{ '}' }},
+    background: '#ffffff',
+    border: '#e0e7ff'
+  {{ '}' }}
+{{ '}' }};</code></pre>
+      </div>
+      <div class="live-example">
+        <ngx-analog-clock [config]="customColorsExample"></ngx-analog-clock>
+      </div>
+    </section>
+
+    <section id="feature-gradients" class="content-section">
+      <h2>Gradient Backgrounds</h2>
+      <p>Create stunning gradient backgrounds with linear or radial gradients.</p>
+      <div class="code-block">
+        <pre><code>// Linear gradient
+customColors: {{'{' }}
+  backgroundGradient: {{'{' }}
+    type: 'linear',
+    start: '#667eea',
+    end: '#764ba2',
+    angle: 135
+  {{ '}' }}
+{{ '}' }}
+
+// Radial gradient
+customColors: {{'{' }}
+  backgroundGradient: {{'{' }}
+    type: 'radial',
+    start: '#4a0034',
+    end: '#0a0000'
+  {{ '}' }}
+{{ '}' }}</code></pre>
+      </div>
+    </section>
+
+    <section id="example-timer" class="content-section">
+      <h2>Timer / Countdown</h2>
+      <p>Create a countdown timer or stopwatch.</p>
+      <div class="code-block">
+        <pre><code>export class CountdownComponent {{'{' }}
+  targetTime: Date;
+  currentTime: Date = new Date();
+
+  ngOnInit() {{'{' }}
+    // Set countdown target (e.g., 10 minutes from now)
+    this.targetTime = new Date(Date.now() + 10 * 60 * 1000);
+    
+    setInterval(() => {{'{' }}
+      const remaining = this.targetTime.getTime() - Date.now();
+      if (remaining > 0) {{'{' }}
+        this.currentTime = new Date(remaining);
+      {{ '}' }}
+    {{ '}' }}, 1000);
+  {{ '}' }}
+{{ '}' }}
+
+&lt;ngx-analog-clock [time]="currentTime"&gt;&lt;/ngx-analog-clock&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="example-branded" class="content-section">
+      <h2>Brand Integration</h2>
+      <p>Match the clock to your brand colors.</p>
+      <div class="code-block">
+        <pre><code>brandedClock: AnalogClockConfig = {{'{' }}
+  theme: 'custom',
+  customColors: {{'{' }}
+    hands: {{'{' }}
+      hour: '#your-brand-primary',
+      minute: '#your-brand-primary',
+      second: '#your-brand-accent'
+    {{ '}' }},
+    markers: {{'{' }}
+      hour: '#your-brand-primary'
+    {{ '}' }},
+    background: '#your-brand-background',
+    border: '#your-brand-border'
+  {{ '}' }},
+  label: {{'{' }}
+    text: 'Your Company',
+    position: 'bottom'
+  {{ '}' }}
+{{ '}' }};</code></pre>
+      </div>
+    </section>
+
+    <!-- TypeScript -->
+    <section id="typescript" class="content-section">
+      <h1>TypeScript Support</h1>
+      <p>ngx-analog-clock is written in TypeScript and provides full type definitions for excellent IntelliSense support.</p>
+      
+      <h3>Main Interfaces</h3>
+      <div class="code-block">
+        <pre><code>interface AnalogClockConfig {{'{' }}
+  size?: number;
+  theme?: 'light' | 'dark' | 'custom';
+  timezone?: string;
+  time?: Date;
+  hands?: HandsConfig;
+  display?: DisplayConfig;
+  customColors?: CustomColorsConfig;
+  digitalDisplay?: DigitalDisplayConfig;
+  label?: LabelConfig;
+{{ '}' }}
+
+interface HandsConfig {{'{' }}
+  hour?: HandConfig;
+  minute?: HandConfig;
+  second?: HandConfig;
+  smooth?: boolean;
+{{ '}' }}
+
+interface HandConfig {{'{' }}
+  length?: number;
+  width?: number;
+  show?: boolean;
+{{ '}' }}</code></pre>
+      </div>
+      <p>Import types for better type safety:</p>
+      <div class="code-block">
+        <pre><code>import {{ '{' }} AnalogClockConfig {{ '}' }} from 'ngx-analog-clock';</code></pre>
+      </div>
+    </section>
+
+    <!-- Performance -->
+    <section id="performance" class="content-section">
+      <h1>Performance</h1>
+      
+      <h3>Optimized Rendering</h3>
+      <p>The clock uses efficient rendering techniques:</p>
+      <ul>
+        <li><strong>60 FPS animations</strong> - Smooth second hand movement with requestAnimationFrame</li>
+        <li><strong>OnPush change detection</strong> - Minimal re-renders for better performance</li>
+        <li><strong>Pure CSS animations</strong> - Hardware-accelerated transforms</li>
+        <li><strong>SVG-based</strong> - Crisp rendering at any size without pixelation</li>
+      </ul>
+
+      <h3>Best Practices</h3>
+      <div class="info-box">
+        <ul>
+          <li>Use <code>smooth: false</code> if you have many clocks on one page to reduce CPU usage</li>
+          <li>Avoid updating <code>[time]</code> input more than once per second</li>
+          <li>Consider hiding seconds hand (<code>hands.second.show: false</code>) for static displays</li>
+          <li>Use appropriate <code>size</code> values - larger clocks use more resources</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>

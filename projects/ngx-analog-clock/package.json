@@ -1,0 +1,48 @@
+{
+  "name": "@craftedcode-dev/ngx-analog-clock",
+  "version": "1.0.0",
+  "description": "Customizable analog clocks for Angular • Free, lightweight & easy to use",
+  "author": {
+    "name": "craftedcode-dev",
+    "url": "https://github.com/craftedcode-dev"
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "angular-component",
+    "clock",
+    "classic-clock",
+    "modern-clock",
+    "analog-clock",
+    "ngx-analog-clock",
+    "time",
+    "timezone",
+    "typescript",
+    "customizable",
+    "ui-component",
+    "ngx"
+  ],
+  "homepage": "https://github.com/craftedcode-dev/ngx-analog-clock#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craftedcode-dev/ngx-analog-clock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/craftedcode-dev/ngx-analog-clock/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=17.0.0",
+    "@angular/core": ">=17.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

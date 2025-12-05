@@ -1,0 +1,99 @@
+.main-nav {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background: #ffffff;
+	border-bottom: 1px solid #e5e7eb;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+	transition: box-shadow 0.3s ease;
+
+	&:hover {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	}
+
+	.nav-container {
+		margin: 0 auto;
+		padding: 0 40px;
+		height: 64px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		@media (max-width: 768px) {
+			padding: 0 20px;
+			height: 56px;
+		}
+	}
+
+	.logo {
+		font-size: 18px;
+		font-weight: 700;
+		color: #0f172a;
+		text-decoration: none;
+		letter-spacing: -0.5px;
+		transition: all 0.2s;
+		display: flex;
+
+		&:hover {
+			color: #667eea;
+		}
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 32px;
+		align-items: center;
+
+		@media (max-width: 768px) {
+			gap: 20px;
+		}
+
+		a {
+			color: #64748b;
+			text-decoration: none;
+			font-size: 15px;
+			font-weight: 500;
+			transition: all 0.2s;
+			position: relative;
+			padding: 8px 0;
+
+			&:hover {
+				color: #0f172a;
+			}
+
+			&.active {
+				color: #667eea;
+				font-weight: 600;
+
+				&::after {
+					content: '';
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 2px;
+					background: #3b82f6;
+					border-radius: 2px;
+				}
+			}
+
+			&.github-link {
+				display: flex;
+				align-items: center;
+				padding: 6px 12px;
+				border-radius: 6px;
+				background: #f8fafc;
+				transition: all 0.2s;
+
+				&:hover {
+					background: #f1f5f9;
+					transform: translateY(-1px);
+				}
+
+				svg {
+					display: block;
+				}
+			}
+		}
+	}
+}

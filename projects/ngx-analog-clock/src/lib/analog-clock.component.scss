@@ -1,0 +1,364 @@
+.clock-container {
+	display: inline-block;
+	font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+	position: relative;
+}
+
+.analog-clock {
+	display: block;
+}
+
+// ============================================
+// LIGHT THEME
+// ============================================
+.light-theme {
+	filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12)) 
+			drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+
+	.glow-ring {
+		fill: none;
+		stroke: var(--border-color, #e8eaed);
+		stroke-width: 2;
+		opacity: 1;
+	}
+
+	.clock-face {
+		stroke: none;
+
+		&:not([fill]) {
+			fill: var(--clock-bg, #ffffff);
+		}
+	}
+
+	.inner-ring {
+		fill: none;
+		stroke: var(--inner-ring-color, #f1f3f4);
+		stroke-width: 0.5;
+		opacity: 0.4;
+	}
+
+	.hour-marker {
+		stroke: var(--hour-marker-color, #020000);
+		stroke-linecap: round;
+		opacity: 1;
+	}
+
+	.minute-marker {
+		stroke: var(--minute-marker-color, rgba(92, 92, 92, 0.3));
+		stroke-linecap: round;
+	}
+
+	.hour-number {
+		fill: var(--number-color, #1f1f1f);
+		font-weight: 500;
+		font-family: 'Google Sans', 'Roboto', sans-serif;
+		opacity: 0.9;
+	}
+
+	.clock-label {
+		fill: var(--label-color, #4a4a4a);
+		font-weight: 400;
+		font-family: 'Google Sans', 'Roboto', sans-serif;
+		letter-spacing: 1px;
+		font-size: 0.85em;
+		opacity: 0.7;
+	}
+
+	.hour-hand {
+		stroke: var(--hour-hand-color, #4a4a4a);
+		stroke-linecap: round;
+		filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+	}
+
+	.minute-hand {
+		stroke: var(--minute-hand-color, #5a5a5a);
+		stroke-linecap: round;
+		filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+	}
+
+	.second-hand {
+		stroke: var(--second-hand-color, #ff6b6b);
+		stroke-linecap: round;
+	}
+
+	.second-hand-tail {
+		stroke: var(--second-hand-color, #ff6b6b);
+		stroke-linecap: round;
+		opacity: 0.4;
+	}
+
+	.center-dot-outer {
+		fill: none;
+		stroke: var(--center-dot-outer-color, #ff6b6b);
+		stroke-width: 1.5;
+		opacity: 0.5;
+	}
+
+	.center-dot {
+		fill: var(--center-dot-color, #ff6b6b);
+	}
+}
+
+// ============================================
+// DARK THEME
+// ============================================
+.dark-theme {
+	filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+
+	.glow-ring {
+		fill: none;
+		stroke: var(--border-color, #3c4043);
+		stroke-width: 2;
+		opacity: 1;
+	}
+
+	.clock-face {
+		stroke: none;
+
+		&:not([fill]) {
+			fill: var(--clock-bg, #222222);
+		}
+	}
+
+	.inner-ring {
+		fill: none;
+		stroke: var(--inner-ring-color, #5f6368);
+		stroke-width: 0.5;
+		opacity: 0.3;
+	}
+
+	.hour-marker {
+		stroke: var(--hour-marker-color, #ffffff);
+		stroke-linecap: round;
+		opacity: 1;
+	}
+
+	.minute-marker {
+		stroke: var(--minute-marker-color, #ffffff);
+		stroke-linecap: round;
+		opacity: 1;
+	}
+
+	.hour-number {
+		fill: var(--number-color, #f5f5f5);
+		font-family: 'Google Sans', 'Roboto', sans-serif;
+		opacity: 0.95;
+	}
+
+	.clock-label {
+		fill: var(--label-color, #b0b0b0);
+		font-weight: 400;
+		font-family: 'Google Sans', 'Roboto', sans-serif;
+		letter-spacing: 1px;
+		font-size: 0.85em;
+		opacity: 0.8;
+	}
+
+	.hour-hand {
+		stroke: var(--hour-hand-color, #e0e0e0);
+		stroke-linecap: round;
+		filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.15));
+	}
+
+	.minute-hand {
+		stroke: var(--minute-hand-color, #e0e0e0);
+		stroke-linecap: round;
+		filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.1));
+	}
+
+	.second-hand {
+		stroke: var(--second-hand-color, #4da6ff);
+		stroke-linecap: round;
+		filter: drop-shadow(0 0 4px rgba(77, 166, 255, 0.4));
+	}
+
+	.second-hand-tail {
+		stroke: var(--second-hand-color, #4da6ff);
+		stroke-linecap: round;
+		opacity: 0.4;
+	}
+
+	.center-dot-outer {
+		fill: none;
+		stroke: var(--center-dot-outer-color, #4da6ff);
+		stroke-width: 1.5;
+		opacity: 0.6;
+	}
+
+	.center-dot {
+		fill: var(--center-dot-color, #4da6ff);
+		filter: drop-shadow(0 0 4px rgba(77, 166, 255, 0.3));
+	}
+}
+
+// ============================================
+// CUSTOM THEME
+// ============================================
+.custom-theme {
+	filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12)) 
+			drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+
+	.glow-ring {
+		fill: none;
+		stroke: var(--border-color, #e8eaed);
+		opacity: 1;
+	}
+
+	.clock-face {
+		stroke: none;
+
+		&:not([fill]) {
+			fill: var(--clock-bg, #ffffff);
+		}
+	}
+
+	.inner-ring {
+		fill: none;
+		stroke: var(--inner-ring-color, #f1f3f4);
+		stroke-width: 0.5;
+		opacity: 0.4;
+	}
+
+	.hour-marker {
+		stroke: var(--hour-marker-color, #5f6368);
+		stroke-linecap: round;
+		opacity: 0.85;
+	}
+
+	.minute-marker {
+		stroke: var(--minute-marker-color, #5f6368);
+		stroke-linecap: round;
+		opacity: 0.3;
+	}
+
+	.hour-number {
+		fill: var(--number-color, #3c4043);
+		font-family: 'Google Sans', 'Roboto', sans-serif;
+		opacity: 0.95;
+	}
+
+	.clock-label {
+		fill: var(--label-color, #5f6368);
+		font-weight: 400;
+		font-family: 'Google Sans', 'Roboto', sans-serif;
+		letter-spacing: 1px;
+		font-size: 0.85em;
+		opacity: 0.75;
+	}
+
+	.hour-hand {
+		stroke: var(--hour-hand-color, #202124);
+		stroke-linecap: round;
+		filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+	}
+
+	.minute-hand {
+		stroke: var(--minute-hand-color, #5f6368);
+		stroke-linecap: round;
+		filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+	}
+
+	.second-hand {
+		stroke: var(--second-hand-color, #d93025);
+		stroke-linecap: round;
+	}
+
+	.second-hand-tail {
+		stroke: var(--second-hand-color, #d93025);
+		stroke-linecap: round;
+		opacity: 0.4;
+	}
+
+	.center-dot-outer {
+		fill: none;
+		stroke: var(--center-dot-outer-color, var(--second-hand-color, #d93025));
+		stroke-width: 1.5;
+		opacity: 0.5;
+	}
+
+	.center-dot {
+		fill: var(--center-dot-color, var(--second-hand-color, #d93025));
+	}
+}
+
+.smooth {
+	transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.small-size {
+	&.light-theme, &.dark-theme, &.custom-theme {
+		.clock-label {
+			font-size: 0.75em;
+		}
+	}
+
+	filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) !important;
+
+	&.dark-theme {
+		filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.3)) !important;
+	}
+}
+
+.digital-display {
+	margin-top: 12px;
+	text-align: center;
+	font-family: 'Roboto Mono', 'Courier New', monospace;
+
+	.digital-time {
+		font-size: 18px;
+		font-weight: 500;
+		letter-spacing: 1px;
+	}
+
+	.digital-date {
+		font-size: 12px;
+		font-weight: 400;
+		margin-top: 4px;
+		opacity: 0.75;
+	}
+}
+
+.light-theme + .digital-display {
+	color: var(--digital-display-color, #3c4043);
+}
+
+.dark-theme + .digital-display {
+	color: var(--digital-display-color, #e8eaed);
+}
+
+.custom-theme + .digital-display {
+	color: var(--digital-display-color, #3c4043);
+}
+
+.small-size + .digital-display {
+	margin-top: 8px;
+
+	.digital-time {
+		font-size: 14px;
+	}
+
+	.digital-date {
+		font-size: 10px;
+	}
+}
+
+.cardinal-marker {
+	opacity: 0.5;
+}
+
+.cardinal-number {
+	font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.smooth {
+		transition: none !important;
+	}
+
+	.analog-clock {
+		* {
+			animation: none !important;
+			transition: none !important;
+		}
+	}
+}

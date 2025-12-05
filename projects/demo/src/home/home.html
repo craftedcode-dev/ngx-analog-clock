@@ -1,0 +1,107 @@
+<div class="home">
+	<section class="hero">
+		<div class="hero-content">
+			<h1>ngx-analog-clock</h1>
+			<p class="tagline">Customizable analog clocks for Angular • Free, lightweight & easy to use</p>
+			
+			<div class="hero-clock">
+				<ngx-analog-clock [config]="heroClockConfig"></ngx-analog-clock>
+			</div>
+
+			<div class="cta-buttons">
+				<a routerLink="/builder" class="btn-primary">
+					🎨 Try Builder
+				</a>
+				<a routerLink="/showcases" class="btn-secondary">
+					👀 View Showcases
+				</a>
+			</div>
+
+			<div class="install-command">
+				<code>{{ installCode }}</code>
+				<button (click)="copyInstallCommand()" class="copy-btn">
+					{{ copied ? '✓' : '📋' }}
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<section class="features">
+		<h2>Features</h2>
+		<div class="features-grid">
+			<div class="feature-card">
+				<div class="feature-icon">🎨</div>
+				<h3>Fully Customizable</h3>
+				<p>Colors, gradients, sizes, and styles - make it your own</p>
+			</div>
+
+			<div class="feature-card">
+				<div class="feature-icon">⚡</div>
+				<h3>Lightweight & Fast</h3>
+				<p>Optimized performance with smooth animations</p>
+			</div>
+
+			<div class="feature-card">
+				<div class="feature-icon">🌍</div>
+				<h3>Timezone Support</h3>
+				<p>Display any timezone with IANA timezone strings</p>
+			</div>
+
+			<div class="feature-card">
+				<div class="feature-icon">📱</div>
+				<h3>Responsive</h3>
+				<p>Works perfectly on all screen sizes</p>
+			</div>
+
+			<div class="feature-card">
+				<div class="feature-icon">🎯</div>
+				<h3>TypeScript</h3>
+				<p>Full TypeScript support with type definitions</p>
+			</div>
+
+			<div class="feature-card">
+				<div class="feature-icon">🎨</div>
+				<h3>Gradients</h3>
+				<p>Linear and radial gradients for stunning visuals</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="quick-start">
+		<h2>Quick Start</h2>
+		<div class="requirements">
+			<h3>Requirements</h3>
+			<ul>
+				<li>Angular 17+</li>
+				<li>TypeScript 5.0+</li>
+			</ul>
+		</div>
+		<div class="code-example">
+			<pre><code>{{ usageCode }}</code></pre>
+		</div>
+	</section>
+
+	<section class="examples">
+		<h2>Examples</h2>
+		<div class="examples-grid">
+			<div class="example-card" *ngFor="let clock of exampleClocks">
+				<h3>{{ clock.title }}</h3>
+				<ngx-analog-clock [config]="clock.config"></ngx-analog-clock>
+			</div>
+		</div>
+		<div class="view-more">
+			<a routerLink="/showcases" class="btn-primary">
+				View All Showcases →
+			</a>
+		</div>
+	</section>
+
+	<section class="footer">
+		<div class="footer-content">
+			<p>
+				Built with ❤️ for the Angular community by 
+				<a href="https://github.com/craftedcode-dev" target="_blank" rel="noopener">craftedcode-dev</a>
+			</p>
+		</div>
+	</section>
+</div>
