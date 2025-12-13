@@ -7,9 +7,9 @@ A beautiful, customizable analog clock component for Angular applications with t
 
 ## 🎨 Demo
 
-**[Live Demo & Interactive Builder](https://craftedcode-dev.github.io/ngx-analog-clock/)**
+**[Live Demo & Interactive Playground](https://craftedcode-dev.github.io/ngx-analog-clock/)**
 
-Explore 24+ pre-built designs and create your own custom clock with our interactive builder.
+Explore 24+ pre-built designs and create your own custom clock with our interactive playground.
 
 ## ✨ Features
 
@@ -245,7 +245,7 @@ export class TimerComponent implements OnInit {
 
 ## 📖 Documentation
 
-For detailed documentation, interactive examples, and the visual builder, visit:
+For detailed documentation and interactive playground, visit:
 
 **[Full Documentation](https://craftedcode-dev.github.io/ngx-analog-clock/docs)**
 

@@ -1,9 +1,9 @@
-<div class="builder">
-	<div class="builder-grid">
+<div class="playground">
+	<div class="playground-grid">
 
 		<div class="preview-section">
 			<div class="preview-header">
-				<h2>Live Preview</h2>
+				<h2>Preview</h2>
 			</div>
 			<div class="preview-container">
 				@for (dummy of [configKey]; track dummy) {
@@ -29,9 +29,10 @@
 						<input 
 							type="range" 
 							min="100" 
-							max="500" 
+							[max]="maxSize" 
 							[(ngModel)]="size"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{size}}</span>
 					</label>
 
@@ -50,8 +51,8 @@
 						<span>Timezone</span>
 						<input 
 							type="text" 
-							[(ngModel)]="timezone"
-							(ngModelChange)="forceUpdate()"
+							[ngModel]="timezone"
+							(ngModelChange)="onTimezoneChange($event)"
 							placeholder="e.g. America/New_York, Europe/London, Asia/Tokyo">
 					</label>
 
@@ -71,7 +72,7 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="hourShow"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 
 					<label>
@@ -82,7 +83,8 @@
 							max="1.0" 
 							step="0.05" 
 							[(ngModel)]="hourLength"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{formatLength(hourLength)}}</span>
 					</label>
 
@@ -93,7 +95,8 @@
 							min="1" 
 							max="15" 
 							[(ngModel)]="hourWidth"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{hourWidth}}</span>
 					</label>
 
@@ -103,7 +106,7 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="minuteShow"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 
 					<label>
@@ -114,7 +117,8 @@
 							max="1.0" 
 							step="0.05" 
 							[(ngModel)]="minuteLength"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{formatLength(minuteLength)}}</span>
 					</label>
 
@@ -125,7 +129,8 @@
 							min="1" 
 							max="15" 
 							[(ngModel)]="minuteWidth"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{minuteWidth}}</span>
 					</label>
 
@@ -135,7 +140,7 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="secondShow"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 
 					<label>
@@ -143,8 +148,8 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="smooth"
-							(ngModelChange)="forceUpdate()">
-						</label>
+							(ngModelChange)="updateConfig()">
+					</label>
 
 					<label>
 						<span>Length</span>
@@ -154,7 +159,8 @@
 							max="1.0" 
 							step="0.05" 
 							[(ngModel)]="secondLength"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{formatLength(secondLength)}}</span>
 					</label>
 
@@ -165,7 +171,8 @@
 							min="1" 
 							max="15" 
 							[(ngModel)]="secondWidth"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{secondWidth}}</span>
 					</label>
 				</div>
@@ -177,7 +184,7 @@
 						<span>Markers</span>
 						<select 
 							[(ngModel)]="markers"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 							<option value="lines">Lines</option>
 							<option value="numbers">Numbers</option>
 							<option value="both">Both</option>
@@ -189,7 +196,7 @@
 						<span>Number Style</span>
 						<select 
 							[(ngModel)]="numberStyle"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 							<option value="standard">Standard (1-12)</option>
 							<option value="roman">Roman (I-XII)</option>
 						</select>
@@ -202,7 +209,8 @@
 							min="1" 
 							max="10" 
 							[(ngModel)]="hourMarkerWidth"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{hourMarkerWidth}}</span>
 					</label>
 
@@ -213,7 +221,8 @@
 							min="0" 
 							max="5" 
 							[(ngModel)]="minuteMarkerWidth"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{minuteMarkerWidth}}</span>
 					</label>
 
@@ -224,7 +233,8 @@
 							min="10" 
 							max="24" 
 							[(ngModel)]="numberSize"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{numberSize}}</span>
 					</label>
 
@@ -232,7 +242,7 @@
 						<span>Number Weight</span>
 						<select 
 							[(ngModel)]="numberWeight"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 							<option value="light">Light</option>
 							<option value="normal">Normal</option>
 							<option value="bold">Bold</option>
@@ -244,7 +254,7 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="showBorder"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 
 					<label *ngIf="showBorder && theme === 'custom'">
@@ -254,7 +264,8 @@
 							min="1" 
 							max="20" 
 							[(ngModel)]="borderWidth"
-							(ngModelChange)="forceUpdate()">
+							(input)="onRangeInput($event)"
+							(ngModelChange)="updateConfig()">
 						<span class="value">{{borderWidth}}</span>
 					</label>
 
@@ -263,7 +274,7 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="showInnerRing"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 
 					<label>
@@ -271,7 +282,7 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="showCenterRing"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 				</div>
 
@@ -283,14 +294,14 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="showDigitalDisplay"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 
 					<label *ngIf="showDigitalDisplay">
 						<span>Format</span>
 						<select 
 							[(ngModel)]="digitalFormat"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 							<option value="12h">12 Hour</option>
 							<option value="24h">24 Hour</option>
 						</select>
@@ -301,7 +312,7 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="digitalShowSeconds"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 
 					<label *ngIf="showDigitalDisplay">
@@ -309,7 +320,7 @@
 						<input 
 							type="checkbox" 
 							[(ngModel)]="digitalShowDate"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 
 					<label *ngIf="showDigitalDisplay && theme === 'custom'">
@@ -317,7 +328,7 @@
 						<input 
 							type="color" 
 							[(ngModel)]="digitalColor"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 					</label>
 				</div>
 
@@ -329,7 +340,7 @@
 						<input 
 							type="text" 
 							[(ngModel)]="labelText"
-							(ngModelChange)="forceUpdate()"
+							(ngModelChange)="updateConfig()"
 							placeholder="Enter label text">
 					</label>
 
@@ -337,7 +348,7 @@
 						<span>Position</span>
 						<select 
 							[(ngModel)]="labelPosition"
-							(ngModelChange)="forceUpdate()">
+							(ngModelChange)="updateConfig()">
 							<option value="top">Top</option>
 							<option value="bottom">Bottom</option>
 						</select>
@@ -356,146 +367,147 @@
 					</label>
 
 					<div class="custom-colors-section" *ngIf="useCustomColors">
-					<h4>Hands</h4>
-					<label>
-						<span>Hour Hand</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customHourHand"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<label>
-						<span>Minute Hand</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customMinuteHand"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<label>
-						<span>Second Hand</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customSecondHand"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<h4>Markers</h4>
-					<label>
-						<span>Hour Markers</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customHourMarker"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<label>
-						<span>Minute Markers</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customMinuteMarker"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<h4>Center</h4>
-					<label>
-						<span>Center Dot</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customCenterDot"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<label>
-						<span>Center Ring</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customCenterRing"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<h4 style="margin: 24px 0px;">Background & Border</h4>
-					<label>
-						<span>Use Gradient</span>
-						<input 
-							type="checkbox" 
-							[(ngModel)]="useGradient"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<div *ngIf="!useGradient">
-						<label style="margin-bottom: 12px;">
-						<span>Background</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customBackground"
-							(ngModelChange)="forceUpdate()">
-						</label>
-					</div>
-
-					<div *ngIf="useGradient">
+						<h4>Hands</h4>
 						<label>
-							<span>Gradient Type</span>
-							<select 
-								[(ngModel)]="gradientType"
-								(ngModelChange)="forceUpdate()">
-								<option value="linear">Linear</option>
-								<option value="radial">Radial</option>
-							</select>
+							<span>Hour Hand</span>
+							<input 
+								type="color" 
+								[(ngModel)]="customHourHand"
+								(ngModelChange)="updateConfig()">
 						</label>
 
 						<label>
-							<span>Start Color</span>
+							<span>Minute Hand</span>
 							<input 
 								type="color" 
-								[(ngModel)]="gradientStart"
-								(ngModelChange)="forceUpdate()">
+								[(ngModel)]="customMinuteHand"
+								(ngModelChange)="updateConfig()">
 						</label>
 
-						<label style="margin-bottom: 12px;">
-							<span>End Color</span>
+						<label>
+							<span>Second Hand</span>
 							<input 
 								type="color" 
-								[(ngModel)]="gradientEnd"
-								(ngModelChange)="forceUpdate()">
+								[(ngModel)]="customSecondHand"
+								(ngModelChange)="updateConfig()">
 						</label>
 
-						<label *ngIf="gradientType === 'linear'" style="margin-bottom: 12px;">
-							<span>Angle (deg)</span>
+						<h4>Markers</h4>
+						<label>
+							<span>Hour Markers</span>
 							<input 
-								type="range" 
-								min="0" 
-								max="360" 
-								[(ngModel)]="gradientAngle"
-								(ngModelChange)="forceUpdate()">
-							<span class="value">{{gradientAngle}}°</span>
+								type="color" 
+								[(ngModel)]="customHourMarker"
+								(ngModelChange)="updateConfig()">
 						</label>
-					</div>
 
-					<label>
-						<span>Border</span>
-						<input 
-							type="color" 
-							[(ngModel)]="customBorder"
-							(ngModelChange)="forceUpdate()">
-					</label>
-
-					<label>
-						<span>Inner Ring</span>
+						<label>
+							<span>Minute Markers</span>
 							<input 
-							type="color" 
-							[(ngModel)]="customInnerRing"
-							(ngModelChange)="forceUpdate()">
-					</label>
+								type="color" 
+								[(ngModel)]="customMinuteMarker"
+								(ngModelChange)="updateConfig()">
+						</label>
 
-					<label *ngIf="hasLabel">
-						<span>Label Color</span>
+						<h4>Center</h4>
+						<label>
+							<span>Center Dot</span>
 							<input 
-							type="color" 
-							[(ngModel)]="customLabel"
-							(ngModelChange)="forceUpdate()">
-					</label>
+								type="color" 
+								[(ngModel)]="customCenterDot"
+								(ngModelChange)="updateConfig()">
+						</label>
+
+						<label>
+							<span>Center Ring</span>
+							<input 
+								type="color" 
+								[(ngModel)]="customCenterRing"
+								(ngModelChange)="updateConfig()">
+						</label>
+
+						<h4 style="margin: 24px 0px;">Background & Border</h4>
+						<label>
+							<span>Use Gradient</span>
+							<input 
+								type="checkbox" 
+								[(ngModel)]="useGradient"
+								(ngModelChange)="updateConfig()">
+						</label>
+
+						<div *ngIf="!useGradient">
+							<label style="margin-bottom: 12px;">
+								<span>Background</span>
+								<input 
+									type="color" 
+									[(ngModel)]="customBackground"
+									(ngModelChange)="updateConfig()">
+							</label>
+						</div>
+
+						<div *ngIf="useGradient">
+							<label>
+								<span>Gradient Type</span>
+								<select 
+									[(ngModel)]="gradientType"
+									(ngModelChange)="updateConfig()">
+									<option value="linear">Linear</option>
+									<option value="radial">Radial</option>
+								</select>
+							</label>
+
+							<label>
+								<span>Start Color</span>
+								<input 
+									type="color" 
+									[(ngModel)]="gradientStart"
+									(ngModelChange)="updateConfig()">
+							</label>
+
+							<label style="margin-bottom: 12px;">
+								<span>End Color</span>
+								<input 
+									type="color" 
+									[(ngModel)]="gradientEnd"
+									(ngModelChange)="updateConfig()">
+							</label>
+
+							<label *ngIf="gradientType === 'linear'" style="margin-bottom: 12px;">
+								<span>Angle (deg)</span>
+								<input 
+									type="range" 
+									min="0" 
+									max="360" 
+									[(ngModel)]="gradientAngle"
+									(input)="onRangeInput($event)"
+									(ngModelChange)="updateConfig()">
+								<span class="value">{{gradientAngle}}°</span>
+							</label>
+						</div>
+
+						<label>
+							<span>Border</span>
+							<input 
+								type="color" 
+								[(ngModel)]="customBorder"
+								(ngModelChange)="updateConfig()">
+						</label>
+
+						<label>
+							<span>Inner Ring</span>
+							<input 
+								type="color" 
+								[(ngModel)]="customInnerRing"
+								(ngModelChange)="updateConfig()">
+						</label>
+
+						<label *ngIf="hasLabel">
+							<span>Label Color</span>
+							<input 
+								type="color" 
+								[(ngModel)]="customLabel"
+								(ngModelChange)="updateConfig()">
+						</label>
 					</div>
 				</div>
 			</div>
@@ -503,19 +515,9 @@
 	</div>
 </div>
 
-<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
-	<div class="modal-content" (click)="$event.stopPropagation()">
-		<div class="modal-header">
-			<h2>Generated Config</h2>
-			<div class="modal-actions">
-				<button (click)="copyToClipboard()" class="btn-copy">
-					{{ copied ? '✓ Copied!' : '📋 Copy Config' }}
-				</button>
-				<button (click)="closeModal()" class="btn-close">×</button>
-			</div>
-		</div>
-		<div class="modal-body">
-			<pre><code>{{generatedCode}}</code></pre>
-		</div>
-	</div>
-</div>
+<app-config-modal
+	[show]="showConfigModal"
+	[title]="selectedClockName"
+	[code]="formattedConfig"
+	(close)="closeModal()">
+</app-config-modal>
