@@ -201,16 +201,16 @@ export class Docs {
       properties: [
         {
           name: 'display.markers',
-          type: "'lines' | 'numbers' | 'both' | 'none'",
+          type: "'lines' | 'numbers' | 'dots' | 'lines-numbers' | 'dots-numbers' | 'none'",
           default: "'lines'",
-          description: 'Type of hour markers to display on the clock face.',
-          example: "'numbers'"
+          description: 'Type of hour markers: lines (traditional), dots (circular), numbers (1-12), lines-numbers (lines + cardinal numbers), dots-numbers (dots + cardinal numbers), or none.',
+          example: "'dots-numbers'"
         },
         {
           name: 'display.numberStyle',
           type: "'arabic' | 'roman'",
           default: "'arabic'",
-          description: 'Number style when markers is "numbers" or "both". Arabic (1-12) or Roman numerals (I-XII).',
+          description: 'Number style when markers includes numbers. Arabic (1-12) or Roman numerals (I-XII).',
           example: "'roman'"
         },
         {
@@ -238,15 +238,15 @@ export class Docs {
           name: 'display.hourMarkerWidth',
           type: 'number',
           default: '3',
-          description: 'Width of hour markers in pixels (when markers is "lines" or "both").',
+          description: 'Size of hour markers in pixels. Works for both lines (stroke width) and dots (radius). Range: 1-10.',
           example: '4'
         },
         {
           name: 'display.minuteMarkerWidth',
           type: 'number',
           default: '1',
-          description: 'Width of minute markers in pixels (when markers is "lines" or "both").',
-          example: '2'
+          description: 'Size of minute markers in pixels. Works for both lines (stroke width) and dots (radius). Set to 0 to hide. Range: 0-5.',
+          example: '1.5'
         },
         {
           name: 'display.borderWidth',
@@ -259,14 +259,14 @@ export class Docs {
           name: 'display.numberSize',
           type: 'number',
           default: '16',
-          description: 'Font size of numbers in pixels (when markers is "numbers" or "both").',
+          description: 'Font size of numbers in pixels (when markers includes numbers).',
           example: '18'
         },
         {
           name: 'display.numberWeight',
           type: "'light' | 'normal' | 'bold'",
           default: "'bold'",
-          description: 'Font weight of numbers (when markers is "numbers" or "both"). Light (300), Normal (400), Bold (700).',
+          description: 'Font weight of numbers. Light (300), Normal (400), Bold (700).',
           example: "'normal'"
         }
       ]
@@ -299,21 +299,21 @@ export class Docs {
           name: 'customColors.markers.hour',
           type: 'string',
           default: 'theme-dependent',
-          description: 'Hour markers color. Only applies when theme is "custom".',
+          description: 'Hour markers color (works for both line and dot markers). Only applies when theme is "custom".',
           example: "'#1e40af'"
         },
         {
           name: 'customColors.markers.minute',
           type: 'string',
           default: 'theme-dependent',
-          description: 'Minute markers color. Only applies when theme is "custom".',
+          description: 'Minute markers color (works for both line and dot markers). Only applies when theme is "custom".',
           example: "'#3b82f6'"
         },
         {
           name: 'customColors.markers.numbers',
           type: 'string',
           default: 'theme-dependent',
-          description: 'Numbers color (when markers is "numbers" or "both"). Only applies when theme is "custom".',
+          description: 'Numbers color (when markers includes numbers). Only applies when theme is "custom".',
           example: "'#1e293b'"
         },
         {

@@ -90,11 +90,11 @@ export class ClockConfigService {
 		hands: {
 			hour: { length: 0.6, width: 3 },
 			minute: { length: 0.75, width: 2 },
-			second: { length: 0.9, width: 1 },
+			second: { length: 0.85, width: 1 },
 			smooth: false
 		},
 		display: {
-			markers: 'lines',
+			markers: 'dots-numbers',
 			showBorder: false,
 			showInnerRing: false,
 			showCenterRing: false
@@ -125,7 +125,7 @@ export class ClockConfigService {
 			smooth: false
 		},
 		display: {
-			markers: 'both',
+			markers: 'lines-numbers',
 			numberStyle: 'arabic',
 			showBorder: true,
 			showInnerRing: true,
@@ -164,7 +164,7 @@ export class ClockConfigService {
 			smooth: false
 		},
 		display: {
-			markers: 'both',
+			markers: 'lines-numbers',
 			numberStyle: 'roman',
 			showBorder: true,
 			showInnerRing: true,
@@ -459,18 +459,16 @@ export class ClockConfigService {
 	classicSilverConfig: AnalogClockConfig = {
 		theme: 'custom',
 		hands: {
-			hour: { length: 0.65, width: 3 },
-			minute: { length: 0.75, width: 2 },
-			second: { length: 0.9, width: 1 },
+			hour: { length: 0.7, width: 4 },
+			minute: { length: 0.8, width: 3 },
+			second: { length: 0.85, width: 2 },
 			smooth: false
 		},
 		display: {
-			markers: 'lines',
+			markers: 'dots',
 			showBorder: false,
 			showInnerRing: false,
-			showCenterRing: false,
-			hourMarkerWidth: 2,
-			minuteMarkerWidth: 1
+			showCenterRing: false
 		},
 		customColors: {
 			background: '#f8fafc',
@@ -481,7 +479,7 @@ export class ClockConfigService {
 			},
 			markers: {
 				hour: '#94a3b8',
-				minute: '#cbd5e1'
+				minute: '#94a3b8'
 			},
 			center: {
 				dot: '#ef4444'

@@ -30,8 +30,8 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 	secondShow = true;
 	smooth = true;
 
-	markers: 'lines' | 'numbers' | 'both' | 'none' = 'lines';
-	numberStyle: 'standard' | 'roman' | 'arabic' = 'standard';
+	markers: 'lines' | 'numbers' | 'dots' | 'lines-numbers' | 'dots-numbers' | 'none' = 'lines';
+	numberStyle: 'arabic' | 'roman' = 'arabic';
 	showBorder = false;
 	showInnerRing = true;
 	showCenterRing = true;
@@ -406,7 +406,7 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 		this.smooth = true;
 
 		this.markers = 'lines';
-		this.numberStyle = 'standard';
+		this.numberStyle = 'arabic';
 		this.showBorder = false;
 		this.showInnerRing = true;
 		this.showCenterRing = true;

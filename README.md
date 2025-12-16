@@ -18,7 +18,7 @@ Explore 24+ pre-built designs and create your own custom clock with our interact
 - ⏱️ **Custom Time Control** - Perfect for timers and countdowns
 - 🎨 **Full Customization** - Colors, gradients, sizes, and styles
 - 📱 **Responsive** - Works seamlessly on all screen sizes
-- ⚡ **Smooth Animations** - 30 FPS second hand movement
+- ⚡ **Smooth Animations** - 60 FPS second hand movement
 - 🎯 **TypeScript** - Full type definitions included
 - 📦 **Lightweight** - Optimized performance with minimal bundle size
 
@@ -96,16 +96,16 @@ Configure via `config.display`:
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `markers` | `'lines' \| 'numbers' \| 'both' \| 'none'` | `'lines'` | Type of hour markers |
-| `numberStyle` | `'standard' \| 'roman'` | `'standard'` | Number style (1-12 or I-XII) |
+| `markers` | `'lines' \| 'numbers' \| 'dots' \| 'lines-numbers' \| 'dots-numbers' \| 'none'` | `'lines'` | Hour markers: lines (traditional), dots (circular), numbers (1-12), lines-numbers (lines + cardinal numbers), dots-numbers (dots + cardinal numbers), or none |
+| `numberStyle` | `'arabic' \| 'roman'` | `'arabic'` | Number style: Arabic (1-12) or Roman numerals (I-XII) |
 | `showBorder` | `boolean` | `true` | Show clock border |
 | `showInnerRing` | `boolean` | `true` | Show inner decorative ring |
 | `showCenterRing` | `boolean` | `true` | Show ring around center |
-| `hourMarkerWidth` | `number` | `3` | Hour marker width (when markers is 'lines' or 'both') |
-| `minuteMarkerWidth` | `number` | `1` | Minute marker width (when markers is 'lines' or 'both') |
+| `hourMarkerWidth` | `number` | `3` | Size of hour markers in pixels. Works for both lines (stroke width) and dots (radius) |
+| `minuteMarkerWidth` | `number` | `1` | Size of minute markers in pixels. Works for both lines (stroke width) and dots (radius) |
 | `borderWidth` | `number` | `10` | Border width in pixels |
 | `numberSize` | `number` | `16` | Font size for numbers |
-| `numberWeight` | `'normal' \| 'bold'` | `'bold'` | Font weight for numbers |
+| `numberWeight` | `'light' \| 'normal' \| 'bold'` | `'bold'` | Font weight for numbers |
 
 ### Custom Colors
 
@@ -116,8 +116,9 @@ Configure via `config.customColors` (only applies when `theme` is `'custom'`):
 | `hands.hour` | `string` | Hour hand color |
 | `hands.minute` | `string` | Minute hand color |
 | `hands.second` | `string` | Second hand color |
-| `markers.hour` | `string` | Hour markers color |
-| `markers.minute` | `string` | Minute markers color |
+| `markers.hour` | `string` | Hour markers color (works for both line and dot markers) |
+| `markers.minute` | `string` | Minute markers color (works for both line and dot markers) |
+| `markers.numbers` | `string` | Numbers color |
 | `center.dot` | `string` | Center dot color |
 | `center.ring` | `string` | Center ring color |
 | `background` | `string` | Clock face background |
@@ -143,9 +144,10 @@ Configure via `config.digitalDisplay`:
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `enabled` | `boolean` | `false` | Show digital time display |
-| `format` | `'12h' \| '24h'` | `'12h'` | Time format |
+| `format` | `'12h' \| '24h'` | `'24h'` | Time format |
 | `showSeconds` | `boolean` | `true` | Show seconds in digital display |
 | `showDate` | `boolean` | `false` | Show date in digital display |
+| `color` | `string` | theme-dependent | Custom color for digital display text |
 
 ### Label
 
@@ -171,6 +173,33 @@ clockConfig: AnalogClockConfig = {
   digitalDisplay: {
     enabled: true,
     format: '12h'
+  }
+};
+```
+
+### Modern Dot Markers
+
+```typescript
+clockConfig: AnalogClockConfig = {
+  size: 250,
+  theme: 'custom',
+  display: {
+    markers: 'dots-numbers',
+    hourMarkerWidth: 5,
+    numberWeight: 'bold'
+  },
+  customColors: {
+    background: '#f0f9ff',
+    border: '#0ea5e9',
+    hands: {
+      hour: '#0c4a6e',
+      minute: '#0369a1',
+      second: '#e11d48'
+    },
+    markers: {
+      hour: '#075985',
+      numbers: '#0c4a6e'
+    }
   }
 };
 ```
