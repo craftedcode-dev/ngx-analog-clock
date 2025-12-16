@@ -1,5 +1,5 @@
 export type ClockTheme = 'light' | 'dark' | 'custom';
-export type ClockMarkers = 'lines' | 'numbers' | 'both' | 'none';
+export type ClockMarkers = 'lines' | 'numbers' | 'dots' | 'lines-numbers' | 'dots-numbers' | 'none';
 export type LabelPosition = 'top' | 'bottom';
 export type TimeFormat = '12h' | '24h';
 export type NumberStyle = 'arabic' | 'roman';
@@ -31,7 +31,7 @@ export interface HandConfig {
 }
 
 export interface DisplayConfig {
-	/** Marker type - lines, numbers, both, none (default: 'lines') */
+	/** Marker type - lines, numbers, dots, lines-numbers, dots-numbers, none (default: 'lines') */
 	markers?: ClockMarkers;
 
 	/** Show border/glow ring (default: true) */
@@ -55,10 +55,10 @@ export interface DisplayConfig {
 	/** Number font weight - light (300), normal (400), bold (700) (default: 'normal') */
 	numberWeight?: NumberWeight;
 
-	/** Hour marker line width in pixels (min: 1, max: 10, default: responsive 2-3) */
+	/** Hour marker width/size in pixels - works for both lines and dots (min: 1, max: 10, default: responsive 2-4) */
 	hourMarkerWidth?: number;
 
-	/** Minute marker line width in pixels (min: 0 to hide, max: 5, default: 1) */
+	/** Minute marker width/size in pixels - works for both lines and dots (min: 0 to hide, max: 5, default: 1-1.5) */
 	minuteMarkerWidth?: number;
 }
 

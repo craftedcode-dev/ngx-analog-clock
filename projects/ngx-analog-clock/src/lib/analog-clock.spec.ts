@@ -91,10 +91,10 @@ describe('AnalogClockComponent', () => {
 		expect(fixture.nativeElement.querySelectorAll('.hour-number').length).toBeGreaterThan(0);
 	});
 
-	it('should render both markers and numbers', () => {
+	it('should render lines-numbers markers and numbers', () => {
 		const fixture = createComponent({ 
 			size: 200, theme: 'light', timezone: 'local',
-			display: { markers: 'both' }
+			display: { markers: 'lines-numbers' }
 		});
 		expect(fixture.nativeElement.querySelectorAll('.hour-marker').length).toBeGreaterThan(0);
 		expect(fixture.nativeElement.querySelectorAll('.hour-number').length).toBeGreaterThan(0);
@@ -197,5 +197,72 @@ describe('AnalogClockComponent', () => {
 		const fixture = createComponent({ size: 200, theme: 'light', timezone: 'local' });
 		fixture.componentInstance.ngOnDestroy();
 		expect(fixture.componentInstance).toBeTruthy();
+	});
+
+	it('should render dot markers', () => {
+		const fixture = createComponent({ 
+			size: 200, theme: 'light', timezone: 'local',
+			display: { markers: 'dots' }
+		});
+		expect(fixture.nativeElement.querySelectorAll('.hour-dot').length).toBeGreaterThan(0);
+	});
+
+	it('should render minute dots on medium+ clocks', () => {
+		const fixture = createComponent({ 
+			size: 250, theme: 'light', timezone: 'local',
+			display: { markers: 'dots' }
+		});
+		expect(fixture.nativeElement.querySelectorAll('.minute-dot').length).toBeGreaterThan(0);
+	});
+
+	it('should not render minute dots on small clocks', () => {
+		const fixture = createComponent({ 
+			size: 120, theme: 'light', timezone: 'local',
+			display: { markers: 'dots' }
+		});
+		expect(fixture.nativeElement.querySelectorAll('.minute-dot').length).toBe(0);
+	});
+
+	it('should render cardinal dots with special styling', () => {
+		const fixture = createComponent({ 
+			size: 200, theme: 'light', timezone: 'local',
+			display: { markers: 'dots' }
+		});
+		expect(fixture.nativeElement.querySelectorAll('.cardinal-dot').length).toBe(4);
+	});
+
+	it('should render dots-numbers combination', () => {
+		const fixture = createComponent({ 
+			size: 250, theme: 'light', timezone: 'local',
+			display: { markers: 'dots-numbers' }
+		});
+		expect(fixture.nativeElement.querySelectorAll('.hour-dot').length).toBeGreaterThan(0);
+		expect(fixture.nativeElement.querySelectorAll('.hour-number').length).toBeGreaterThan(0);
+	});
+
+	it('should render minute dots in dots-numbers mode', () => {
+		const fixture = createComponent({ 
+			size: 250, theme: 'light', timezone: 'local',
+			display: { markers: 'dots-numbers' }
+		});
+		expect(fixture.nativeElement.querySelectorAll('.minute-dot').length).toBeGreaterThan(0);
+	});
+
+	it('should use hourMarkerWidth for dot size', () => {
+		const fixture = createComponent({ 
+			size: 200, theme: 'light', timezone: 'local',
+			display: { markers: 'dots', hourMarkerWidth: 5 }
+		});
+		const hourDot = fixture.nativeElement.querySelector('.hour-dot:not(.cardinal-dot)');
+		expect(hourDot).toBeTruthy();
+		expect(fixture.componentInstance.hourDotRadius()).toBe(5);
+	});
+
+	it('should use minuteMarkerWidth for minute dot size', () => {
+		const fixture = createComponent({ 
+			size: 250, theme: 'light', timezone: 'local',
+			display: { markers: 'dots', minuteMarkerWidth: 2 }
+		});
+		expect(fixture.componentInstance.minuteDotRadius()).toBe(2);
 	});
 });

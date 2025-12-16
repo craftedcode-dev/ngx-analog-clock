@@ -68,7 +68,7 @@
 			class="inner-ring" />
 	}
 
-	@if (effectiveMarkers() !== 'none' && (effectiveMarkers() === 'lines' || effectiveMarkers() === 'both')) {
+	@if (effectiveMarkers() !== 'none' && (effectiveMarkers() === 'lines' || effectiveMarkers() === 'lines-numbers')) {
 		@for (hour of displayHourMarkers(); track hour) {
 		<line
 			[attr.x1]="getMarkerX1(hour, true)"
@@ -80,7 +80,7 @@
 		}
 	}
 
-	@if (effectiveMarkers() === 'lines' || effectiveMarkers() === 'both') {
+	@if (effectiveMarkers() === 'lines' || effectiveMarkers() === 'lines-numbers') {
 		@for (hour of cardinalMarkers(); track hour) {
 			<line
 				[attr.x1]="getMarkerX1(hour, true)"
@@ -92,7 +92,7 @@
 		}
 	}
 
-	@if (effectiveMarkers() !== 'none' && (effectiveMarkers() === 'lines' || effectiveMarkers() === 'both') && !isSmall()) {
+	@if (effectiveMarkers() !== 'none' && (effectiveMarkers() === 'lines' || effectiveMarkers() === 'lines-numbers') && !isSmall()) {
 		@for (minute of minutes(); track minute) {
 			<line
 				[attr.x1]="getMarkerX1(minute, false)"
@@ -101,6 +101,34 @@
 				[attr.y2]="getMarkerY2(minute, false)"
 				[attr.stroke-width]="minuteMarkerWidth()"
 				class="minute-marker" />
+		}
+	}
+
+	@if (effectiveMarkers() === 'dots' || effectiveMarkers() === 'dots-numbers') {
+		@for (hour of displayHourMarkers(); track hour) {
+			<circle
+				[attr.cx]="getDotX(hour, true)"
+				[attr.cy]="getDotY(hour, true)"
+				[attr.r]="hourDotRadius()"
+				class="hour-dot" />
+		}
+		
+		@for (hour of cardinalMarkers(); track hour) {
+			<circle
+				[attr.cx]="getDotX(hour === 0 ? 12 : hour, true)"
+				[attr.cy]="getDotY(hour === 0 ? 12 : hour, true)"
+				[attr.r]="hourDotRadius() + 1"
+				class="hour-dot cardinal-dot" />
+		}
+		
+		@if (!isSmall()) {
+			@for (minute of minutes(); track minute) {
+				<circle
+					[attr.cx]="getDotX(minute, false)"
+					[attr.cy]="getDotY(minute, false)"
+					[attr.r]="minuteDotRadius()"
+					class="minute-dot" />
+			}
 		}
 	}
 
@@ -119,7 +147,7 @@
 		}
 	}
 
-	@if (effectiveMarkers() === 'both') {
+	@if (effectiveMarkers() === 'lines-numbers') {
 		@for (hour of cardinalMarkers(); track hour) {
 			<text
 				[attr.x]="getNumberX(hour === 0 ? 12 : hour)"
@@ -133,6 +161,22 @@
 			</text>
 		}
 	}
+
+	@if (effectiveMarkers() === 'dots-numbers') {
+		@for (hour of cardinalMarkers(); track hour) {
+			<text
+				[attr.x]="getNumberX(hour === 0 ? 12 : hour)"
+				[attr.y]="getNumberY(hour === 0 ? 12 : hour)"
+				[attr.font-size]="numberFontSize()"
+				[style.font-weight]="numberFontWeight()"
+				class="hour-number cardinal-number"
+				text-anchor="middle"
+				dominant-baseline="middle">
+				{{ getNumberDisplay(hour) }}
+			</text>
+		}
+	}
+
 
 	@if (effectiveLabelText()) {
 		<text

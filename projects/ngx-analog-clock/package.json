@@ -1,6 +1,6 @@
 {
   "name": "@craftedcode-dev/ngx-analog-clock",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Customizable analog clocks for Angular • Free, lightweight & easy to use",
   "author": {
     "name": "craftedcode-dev",
@@ -9,17 +9,14 @@
   "license": "MIT",
   "keywords": [
     "angular",
-    "angular-component",
     "clock",
-    "classic-clock",
-    "modern-clock",
     "analog-clock",
-    "ngx-analog-clock",
     "time",
     "timezone",
-    "typescript",
+    "world-clock",
+    "timer",
+    "countdown",
     "customizable",
-    "ui-component",
     "ngx"
   ],
   "homepage": "https://github.com/craftedcode-dev/ngx-analog-clock#readme",

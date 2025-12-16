@@ -104,7 +104,7 @@ export class AnalogClockComponent implements OnInit, OnDestroy, OnChanges {
 	center = computed(() => this.sizeSignal() / 2);
 	radius = computed(() => {
 		const baseRadius = this.sizeSignal() / 2;
-		const hasNumbers = this.effectiveMarkers() === 'numbers' || this.effectiveMarkers() === 'both';
+		const hasNumbers = this.effectiveMarkers() === 'numbers' || this.effectiveMarkers() === 'lines-numbers';
 		return baseRadius - (hasNumbers ? 15 : 10);
 	});
 
@@ -183,6 +183,22 @@ export class AnalogClockComponent implements OnInit, OnDestroy, OnChanges {
 	getMarkerY1 = (index: number, isHour: boolean) => this.getMarkerCoords(index, isHour).y1;
 	getMarkerX2 = (index: number, isHour: boolean) => this.getMarkerCoords(index, isHour).x2;
 	getMarkerY2 = (index: number, isHour: boolean) => this.getMarkerCoords(index, isHour).y2;
+
+	private getDotPosition(index: number, isHour: boolean): Position {
+		const angle = (index * (isHour ? 30 : 6) - 90) * (Math.PI / 180);
+		const positionMultiplier = 0.92;
+		const center = this.center();
+		const radius = this.radius();
+
+		return {
+			x: center + Math.cos(angle) * radius * positionMultiplier,
+			y: center + Math.sin(angle) * radius * positionMultiplier
+		};
+	}
+
+	getDotX = (index: number, isHour: boolean) => this.getDotPosition(index, isHour).x;
+	getDotY = (index: number, isHour: boolean) => this.getDotPosition(index, isHour).y;
+
 
 	getNumberX(hour: number): number {
 		const angle = (hour * 30 - 90) * (Math.PI / 180);
@@ -285,6 +301,31 @@ export class AnalogClockComponent implements OnInit, OnDestroy, OnChanges {
 
 		return 1;
 	}
+	
+	hourDotRadius(): number {
+		const customSize = this.display.hourMarkerWidth;
+
+		if (customSize !== undefined) {
+			return Math.min(Math.max(customSize, 1), 8);
+		}
+
+		if (this.isSmall()) return 2;
+		if (this.isMedium()) return 3;
+		return 4;
+	}
+
+	minuteDotRadius(): number {
+		const customSize = this.display.minuteMarkerWidth;
+
+		if (customSize !== undefined) {
+			return Math.min(Math.max(customSize, 0.5), 4);
+		}
+
+		if (this.isSmall()) return 0;
+		if (this.isMedium()) return 1;
+		return 1.5;
+	}
+
 
 	numberFontSize(): number {
 		const customSize = this.display.numberSize;
@@ -332,7 +373,13 @@ export class AnalogClockComponent implements OnInit, OnDestroy, OnChanges {
 			return 0.88;
 		}
 
-		if (markers === 'both') {
+		if (markers === 'lines-numbers') {
+			if (this.isSmall()) return 0.68;
+			if (this.isMedium()) return 0.70;
+			return 0.72;
+		}
+
+		if (markers === 'dots-numbers') {
 			if (this.isSmall()) return 0.68;
 			if (this.isMedium()) return 0.70;
 			return 0.72;

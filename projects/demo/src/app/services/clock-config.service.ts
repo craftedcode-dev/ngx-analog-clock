@@ -1,46 +1,12 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AnalogClockComponent, AnalogClockConfig } from 'ngx-analog-clock';
-import { interval, Subscription } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AnalogClockConfig } from 'ngx-analog-clock';
 
-@Component({
-	selector: 'app-root',
-	standalone: true,
-	imports: [CommonModule, AnalogClockComponent],
-	templateUrl: './showcases.html',
-	styleUrl: './showcases.scss'
+@Injectable({
+	providedIn: 'root'
 })
-export class Showcases implements OnInit, OnDestroy {
-	private subscription?: Subscription;
-
-	customTime = new Date(2024, 0, 1, 0, 0, 0);
-	stopwatchLabel = '00:00';
-	isRunning = false;
-
-	constructor(private cdr: ChangeDetectorRef) {}
-
-	customTimeControlConfig: AnalogClockConfig = {
-		theme: 'custom',
-		hands: {
-			hour: { show: false },
-			minute: { show: false },
-			second: { show: true, length: 0.9, width: 2 },
-			smooth: false
-		},
-		label: {
-			text: this.stopwatchLabel,
-			position: 'bottom'
-		},
-		display: {
-			markers: 'lines',
-			showInnerRing: true
-		},
-		customColors: {
-			hands: {
-				minute: '#d93025'
-			}
-		}
-	};
+export class ClockConfigService {
+	lightThemeConfig: AnalogClockConfig = { theme: 'light' };
+	darkThemeConfig: AnalogClockConfig = { theme: 'dark' };
 
 	customThemeConfig: AnalogClockConfig = {
 		theme: 'custom',
@@ -124,11 +90,11 @@ export class Showcases implements OnInit, OnDestroy {
 		hands: {
 			hour: { length: 0.6, width: 3 },
 			minute: { length: 0.75, width: 2 },
-			second: { length: 0.9, width: 1 },
+			second: { length: 0.85, width: 1 },
 			smooth: false
 		},
 		display: {
-			markers: 'lines',
+			markers: 'dots-numbers',
 			showBorder: false,
 			showInnerRing: false,
 			showCenterRing: false
@@ -159,14 +125,14 @@ export class Showcases implements OnInit, OnDestroy {
 			smooth: false
 		},
 		display: {
-			markers: 'both',
+			markers: 'lines-numbers',
 			numberStyle: 'arabic',
 			showBorder: true,
 			showInnerRing: true,
 			showCenterRing: true
 		},
 		label: {
-			text: 'Arctic',
+			text: 'ARCTIC',
 			position: 'top'
 		},
 		customColors: {
@@ -198,7 +164,7 @@ export class Showcases implements OnInit, OnDestroy {
 			smooth: false
 		},
 		display: {
-			markers: 'both',
+			markers: 'lines-numbers',
 			numberStyle: 'roman',
 			showBorder: true,
 			showInnerRing: true,
@@ -493,18 +459,16 @@ export class Showcases implements OnInit, OnDestroy {
 	classicSilverConfig: AnalogClockConfig = {
 		theme: 'custom',
 		hands: {
-			hour: { length: 0.65, width: 3 },
-			minute: { length: 0.75, width: 2 },
-			second: { length: 0.9, width: 1 },
+			hour: { length: 0.7, width: 4 },
+			minute: { length: 0.8, width: 3 },
+			second: { length: 0.85, width: 2 },
 			smooth: false
 		},
 		display: {
-			markers: 'lines',
+			markers: 'dots',
 			showBorder: false,
 			showInnerRing: false,
-			showCenterRing: false,
-			hourMarkerWidth: 2,
-			minuteMarkerWidth: 1
+			showCenterRing: false
 		},
 		customColors: {
 			background: '#f8fafc',
@@ -515,7 +479,7 @@ export class Showcases implements OnInit, OnDestroy {
 			},
 			markers: {
 				hour: '#94a3b8',
-				minute: '#cbd5e1'
+				minute: '#94a3b8'
 			},
 			center: {
 				dot: '#ef4444'
@@ -718,75 +682,50 @@ export class Showcases implements OnInit, OnDestroy {
 		}
 	};
 
-	showConfigModal: boolean = false;
-	selectedConfig: AnalogClockConfig | null = null;
-	selectedClockName: string = '';
-	copied: boolean = false;
+	presets: { [key: string]: AnalogClockConfig } = {
+		lightThemeConfig: this.lightThemeConfig,
+		darkThemeConfig: this.darkThemeConfig,
+		customThemeConfig: this.customThemeConfig,
+		classicBlackWhiteConfig: this.classicBlackWhiteConfig,
+		classicPinkConfig: this.classicPinkConfig,
+		classicBlueConfig: this.classicBlueConfig,
+		classicBrownConfig: this.classicBrownConfig,
+		modernDarkBrutalistConfig: this.modernDarkBrutalistConfig,
+		modernMatrixConfig: this.modernMatrixConfig,
+		modernVaporwaveConfig: this.modernVaporwaveConfig,
+		modernSteelBlueConfig: this.modernSteelBlueConfig,
+		timezoneSydneyConfig: this.timezoneSydneyConfig,
+		timezoneNewYorkConfig: this.timezoneNewYorkConfig,
+		timezoneParisConfig: this.timezoneParisConfig,
+		timezoneCairoConfig: this.timezoneCairoConfig,
+		classicOrangeConfig: this.classicOrangeConfig,
+		classicEmeraldConfig: this.classicEmeraldConfig,
+		classicSilverConfig: this.classicSilverConfig,
+		modernSunsetOrangeConfig: this.modernSunsetOrangeConfig,
+		classicGreenConfig: this.classicGreenConfig,
+		modernCyberYellowConfig: this.modernCyberYellowConfig,
+		modernMidnightBlueConfig: this.modernMidnightBlueConfig,
+		modernTealConfig: this.modernTealConfig
+	};
 
-	ngOnInit() {
-		this.start();
-	}
+  	currentEditingKey: string | null = null;
 
-	ngOnDestroy() {
-		this.stop();
-	}
-
-	private start() {
-		this.stop();
-		this.isRunning = true;
-
-		this.subscription = interval(1000).subscribe(() => {
-			this.customTime = new Date(this.customTime.getTime() + 1000);
-			
-			const mins = this.customTime.getMinutes().toString().padStart(2, '0');
-			const secs = this.customTime.getSeconds().toString().padStart(2, '0');
-			this.customTimeControlConfig.label!.text = `${mins}:${secs}`;
-			
-			this.cdr.markForCheck();
-		});
-	}
-
-	addSecond() {
-		this.customTime = new Date(this.customTime.getTime() + 1000);
-
-		const mins = this.customTime.getMinutes().toString().padStart(2, '0');
-		const secs = this.customTime.getSeconds().toString().padStart(2, '0');
-		this.customTimeControlConfig.label!.text = `${mins}:${secs}`;
-	}
-
-	private stop() {
-		if (this.subscription) {
-			this.subscription.unsubscribe();
-			this.subscription = undefined;
+	getCurrentConfig(): AnalogClockConfig | null {
+		if (this.currentEditingKey && this.presets[this.currentEditingKey]) {
+			return structuredClone(this.presets[this.currentEditingKey]);
 		}
-		this.isRunning = false;
+		return null;
 	}
 
-	viewConfig(config: AnalogClockConfig, name: string) {
-		this.selectedConfig = config;
-		this.selectedClockName = name;
-		this.showConfigModal = true;
-	}
-
-	closeModal() {
-		this.showConfigModal = false;
-		this.selectedConfig = null;
-		this.selectedClockName = '';
-		this.copied = false;
-	}
-
-	copyConfig() {
-		if (this.selectedConfig) {
-			const configCode = `config: AnalogClockConfig = ${JSON.stringify(this.selectedConfig, null, 2)};`;
-			navigator.clipboard.writeText(configCode).then(() => {
-				this.copied = true;
-				setTimeout(() => this.copied = false, 2000);
-			});
+	setEditingKey(key: string) {
+		if (this.presets[key]) {
+			this.currentEditingKey = key;
+		} else {
+			this.currentEditingKey = null;
 		}
 	}
 
-	get formattedConfig(): string {
-		if (!this.selectedConfig) return '';
-		return JSON.stringify(this.selectedConfig, null, 2);
+	clearEditingKey() {
+		this.currentEditingKey = null;
 	}
 }
