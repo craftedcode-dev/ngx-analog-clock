@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AnalogClockComponent, AnalogClockConfig } from 'ngx-analog-clock';
@@ -115,9 +115,9 @@ export class Home {
 		}
 	];
 
-  	installCode = `npm install @craftedcode-dev/ngx-analog-clock`;
+	installCode = `npm install @craftedcode-dev/ngx-analog-clock`;
 
-usageCode = `import { Component } from '@angular/core';
+	usageCode = `import { Component } from '@angular/core';
 import { AnalogClockComponent } from '@craftedcode-dev/ngx-analog-clock';
 
 @Component({
@@ -133,12 +133,18 @@ import { AnalogClockComponent } from '@craftedcode-dev/ngx-analog-clock';
 })
 export class AppComponent {}`;
 
-  	copied = false;
+	copied = false;
+
+	constructor(private cdr: ChangeDetectorRef) {}
 
 	copyInstallCommand() {
 		navigator.clipboard.writeText(this.installCode).then(() => {
 			this.copied = true;
-			setTimeout(() => this.copied = false, 2000);
+			this.cdr.detectChanges();
+			setTimeout(() => {
+				this.copied = false;
+				this.cdr.detectChanges();
+			}, 2000);
 		});
 	}
 }

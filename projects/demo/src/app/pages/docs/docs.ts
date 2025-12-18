@@ -25,7 +25,6 @@ interface ApiSection {
 export class Docs {
   activeSection: string = 'getting-started';
 
-  // World clock timezones
   timezones = [
     { name: 'New York', tz: 'America/New_York' },
     { name: 'London', tz: 'Europe/London' },
@@ -33,7 +32,6 @@ export class Docs {
     { name: 'Sydney', tz: 'Australia/Sydney' }
   ];
 
-  // Live examples
   basicConfig: AnalogClockConfig = {
     size: 200,
     theme: 'light'
@@ -86,7 +84,6 @@ export class Docs {
     }
   };
 
-  // API Reference Data
   apiSections: ApiSection[] = [
     {
       title: 'Basic Properties',

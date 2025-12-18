@@ -8,40 +8,15 @@
     </p>
 
     <div class="grid">
-
-      <div class="item">
-        <h3>Light</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.lightThemeConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.lightThemeConfig, 'Light Theme')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('lightThemeConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Dark</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.darkThemeConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.darkThemeConfig, 'Dark Theme')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('darkThemeConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Custom</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.customThemeConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.customThemeConfig, 'Custom Theme')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('customThemeConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
+      @for (clock of themes; track clock.key) {
+        <app-clock-showcase-item
+          [title]="clock.title"
+          [config]="getConfig(clock.key)"
+          [configKey]="clock.key"
+          [onViewConfig]="createViewConfigHandler(clock.key, clock.configTitle)"
+          [onEditClock]="createEditClockHandler(clock.key)">
+        </app-clock-showcase-item>
+      }
     </div>
   </section>
 
@@ -53,95 +28,15 @@
     </p>
 
     <div class="grid">
-
-      <div class="item">
-        <h3>Black & White</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.classicBlackWhiteConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.classicBlackWhiteConfig, 'Classic Black & White')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('classicBlackWhiteConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Silver</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.classicSilverConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.classicSilverConfig, 'Classic Silver')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('classicSilverConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Green</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.classicGreenConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.classicGreenConfig, 'Classic Green')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('classicGreenConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Emerald</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.classicEmeraldConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.classicEmeraldConfig, 'Classic Emerald')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('classicEmeraldConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Pink</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.classicPinkConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.classicPinkConfig, 'Classic Pink')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('classicPinkConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Blue</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.classicBlueConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.classicBlueConfig, 'Classic Blue')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('classicBlueConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Retro</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.classicOrangeConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.classicOrangeConfig, 'Classic Retro Orange')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('classicOrangeConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Brown</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.classicBrownConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.classicBrownConfig, 'Classic Brown')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('classicBrownConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
+      @for (clock of classic; track clock.key) {
+        <app-clock-showcase-item
+          [title]="clock.title"
+          [config]="getConfig(clock.key)"
+          [configKey]="clock.key"
+          [onViewConfig]="createViewConfigHandler(clock.key, clock.configTitle)"
+          [onEditClock]="createEditClockHandler(clock.key)">
+        </app-clock-showcase-item>
+      }
     </div>
   </section>
 
@@ -153,95 +48,15 @@
     </p>
 
     <div class="grid">
-
-      <div class="item">
-        <h3>Dark Brutalist</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.modernDarkBrutalistConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.modernDarkBrutalistConfig, 'Modern Dark Brutalist')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('modernDarkBrutalistConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Cyber Yellow</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.modernCyberYellowConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.modernCyberYellowConfig, 'Modern Cyber Yellow')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('modernCyberYellowConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Cyber Matrix</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.modernMatrixConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.modernMatrixConfig, 'Modern Cyber Matrix')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('modernMatrixConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Vaporwave</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.modernVaporwaveConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.modernVaporwaveConfig, 'Modern Vaporwave')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('modernVaporwaveConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Steel Blue</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.modernSteelBlueConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.modernSteelBlueConfig, 'Modern Steel Blue')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('modernSteelBlueConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Midnight Blue</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.modernMidnightBlueConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.modernMidnightBlueConfig, 'Modern Midnight Blue')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('modernMidnightBlueConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Teal</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.modernTealConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.modernTealConfig, 'Modern Teal')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('modernTealConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Sunset Orange</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.modernSunsetOrangeConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.modernSunsetOrangeConfig, 'Modern Sunset Orange')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('modernSunsetOrangeConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
+      @for (clock of modern; track clock.key) {
+        <app-clock-showcase-item
+          [title]="clock.title"
+          [config]="getConfig(clock.key)"
+          [configKey]="clock.key"
+          [onViewConfig]="createViewConfigHandler(clock.key, clock.configTitle)"
+          [onEditClock]="createEditClockHandler(clock.key)">
+        </app-clock-showcase-item>
+      }
     </div>
   </section>
 
@@ -249,55 +64,19 @@
   <section class="block">
     <h2>Timezones</h2>
     <p class="section-description">
-      Display time from any timezone using IANA timezone strings.
+      Display time from any timezone using IANA timezone strings with optional digital display.
     </p>
 
     <div class="grid">
-
-      <div class="item">
-        <h3>New York</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.timezoneNewYorkConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.timezoneNewYorkConfig, 'New York Timezone')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('timezoneNewYorkConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Sydney</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.timezoneSydneyConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.timezoneSydneyConfig, 'Sydney Timezone')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('timezoneSydneyConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Paris</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.timezoneParisConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.timezoneParisConfig, 'Paris Timezone')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('timezoneParisConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h3>Cairo</h3>
-        <div class="clock-wrapper">
-          <ngx-analog-clock [config]="clockService.timezoneCairoConfig"></ngx-analog-clock>
-          <div class="hover-actions">
-            <button class="btn" (click)="viewConfig(clockService.timezoneCairoConfig, 'Cairo Timezone')">Show Config</button>
-            <button class="btn btn-edit" (click)="editClock('timezoneCairoConfig')">Customize</button>
-          </div>
-        </div>
-      </div>
-
+      @for (clock of timezones; track clock.key) {
+        <app-clock-showcase-item
+          [title]="clock.title"
+          [config]="getConfig(clock.key)"
+          [configKey]="clock.key"
+          [onViewConfig]="createViewConfigHandler(clock.key, clock.configTitle)"
+          [onEditClock]="createEditClockHandler(clock.key)">
+        </app-clock-showcase-item>
+      }
     </div>
   </section>
 
@@ -319,13 +98,13 @@
         </div>
       </div>
     </div>
-
   </section>
+
 </div>
 
 <app-config-modal
-	[show]="showConfigModal"
-	[title]="selectedClockName"
-	[code]="formattedConfig"
-	(close)="closeModal()">
+  [show]="showConfigModal"
+  [title]="selectedClockName"
+  [code]="formattedConfig"
+  (close)="closeModal()">
 </app-config-modal>

@@ -56,6 +56,7 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 	customSecondHand = '#ff6b6b';
 	customHourMarker = '#020000';
 	customMinuteMarker = 'rgba(92, 92, 92, 0.3)';
+	customNumbersColor = '#020000';
 	customBackground = '#ffffff';
 	customBorder = '#e5e7eb';
 	customCenterDot = '#000000';
@@ -115,7 +116,6 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 	loadConfig(): void {
 		this.currentConfig = this.clockService.getCurrentConfig();
 
-		console.log(this.currentConfig);
 		if (!this.currentConfig) return;
 
 		this.theme = this.currentConfig.theme ?? this.theme;
@@ -141,9 +141,19 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 			this.markers = this.currentConfig.display.markers ?? this.markers;
 			this.numberStyle = this.currentConfig.display.numberStyle ?? this.numberStyle;
 			this.numberWeight = this.currentConfig.display.numberWeight ?? this.numberWeight;
-			this.showBorder = this.currentConfig.display.showBorder ?? this.showBorder;
-			this.showInnerRing = this.currentConfig.display.showInnerRing ?? this.showInnerRing;
-			this.showCenterRing = this.currentConfig.display.showCenterRing ?? this.showCenterRing;
+			
+			this.showBorder = this.currentConfig.display.showBorder !== undefined 
+				? this.currentConfig.display.showBorder 
+				: this.showBorder;
+			
+			this.showInnerRing = this.currentConfig.display.showInnerRing !== undefined 
+				? this.currentConfig.display.showInnerRing 
+				: this.showInnerRing;
+			
+			this.showCenterRing = this.currentConfig.display.showCenterRing !== undefined 
+				? this.currentConfig.display.showCenterRing 
+				: this.showCenterRing;
+			
 			this.hourMarkerWidth = this.currentConfig.display.hourMarkerWidth ?? this.hourMarkerWidth;
 			this.minuteMarkerWidth = this.currentConfig.display.minuteMarkerWidth ?? this.minuteMarkerWidth;
 			this.borderWidth = this.currentConfig.display.borderWidth ?? this.borderWidth;
@@ -166,15 +176,21 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 		if (this.currentConfig.customColors) {
 			this.useCustomColors = true;
 			const c = this.currentConfig.customColors;
+			
 			this.customHourHand = c.hands?.hour ?? this.customHourHand;
 			this.customMinuteHand = c.hands?.minute ?? this.customMinuteHand;
 			this.customSecondHand = c.hands?.second ?? this.customSecondHand;
+			
 			this.customHourMarker = c.markers?.hour ?? this.customHourMarker;
 			this.customMinuteMarker = c.markers?.minute ?? this.customMinuteMarker;
+			this.customNumbersColor = c.markers?.numbers ?? this.customNumbersColor;
+			
 			this.customBackground = c.background ?? this.customBackground;
 			this.customBorder = c.border ?? this.customBorder;
+			
 			this.customCenterDot = c.center?.dot ?? this.customCenterDot;
 			this.customCenterRing = c.center?.ring ?? this.customCenterRing;
+			
 			this.customInnerRing = c.innerRing ?? this.customInnerRing;
 			this.customLabel = c.label ?? this.customLabel;
 
@@ -287,7 +303,8 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 				},
 				markers: {
 					hour: this.customHourMarker,
-					minute: this.customMinuteMarker
+					minute: this.customMinuteMarker,
+					numbers: this.customNumbersColor
 				},
 				center: {
 					dot: this.customCenterDot,
@@ -337,6 +354,7 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 			this.customSecondHand = '#ff6b6b';
 			this.customHourMarker = '#020000';
 			this.customMinuteMarker = 'rgba(92, 92, 92, 0.3)';
+			this.customNumbersColor = '#020000';
 			this.customBackground = '#ffffff';
 			this.customBorder = '#e5e7eb';
 			this.customCenterDot = '#000000';
@@ -350,6 +368,7 @@ export class Playground implements OnInit, OnDestroy, AfterViewInit {
 			this.customSecondHand = '#ff6b6b';
 			this.customHourMarker = '#ffffff';
 			this.customMinuteMarker = '#ffffff';
+			this.customNumbersColor = '#ffffff';
 			this.customBackground = '#1e293b';
 			this.customBorder = '#334155';
 			this.customCenterDot = '#ffffff';

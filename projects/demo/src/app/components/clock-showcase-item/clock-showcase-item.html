@@ -1,0 +1,10 @@
+<div class="item">
+  <h3>{{ title }}</h3>
+  <div class="clock-wrapper">
+    <ngx-analog-clock [config]="config" [time]="time"></ngx-analog-clock>
+    <div class="hover-actions">
+      <button class="btn" (click)="onViewConfig()">Show Config</button>
+      <button class="btn btn-edit" (click)="onEditClock()">Customize</button>
+    </div>
+  </div>
+</div>
