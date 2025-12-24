@@ -3,7 +3,7 @@
 
 		<a routerLink="/" class="logo">ngx-analog-clock</a>
 
-		<button class="hamburger" (click)="isMenuOpen = !isMenuOpen">
+		<button class="hamburger" [class.open]="isMenuOpen" (click)="isMenuOpen = !isMenuOpen">
 			<span></span>
 			<span></span>
 			<span></span>
